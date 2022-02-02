@@ -11,7 +11,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -29,34 +28,42 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.amber,
       ),
-      home: const MyHomePage(),
+      home: EliteHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage();
+class EliteHomePage extends StatelessWidget {
+  final String title;
+  EliteHomePage({this.title = 'Home'});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Elite Mobile App')),
+        appBar: AppBar(
+          title: Text(title),
+        ),
         body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              Text('My nigga we getting there'),
-              // Wrapping in the Observer will automatically re-render on
-              // changes to counter.value
-              Observer(
-                builder: (_) => Text(
-                  '${counter.value}',
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-              )
-            ])),
-        floatingActionButton: FloatingActionButton(
-            onPressed: counter.increment,
-            tooltip: 'Increment',
-            child: Icon(Icons.add)));
+            child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(children: [
+                  Container(
+                      margin: EdgeInsets.all(8),
+                      height: 200,
+                      width: 200,
+                      color: Colors.green.shade300,
+                      child: Text("Item 1")),
+                  Container(
+                      margin: EdgeInsets.all(8),
+                      height: 200,
+                      width: 200,
+                      color: Colors.green.shade200,
+                      child: Text("Item 2")),
+                  Container(
+                      margin: EdgeInsets.all(8),
+                      height: 200,
+                      width: 200,
+                      color: Colors.green.shade800,
+                      child: Text("Item 3"))
+                ]))));
   }
 }
