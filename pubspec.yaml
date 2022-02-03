@@ -79,6 +79,42 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: NeueHaas
+      fonts:
+        - asset: fonts/NeueHaasDisplayMediu.ttf
+        - asset: fonts/NeueHaasDisplayMediumItalic.ttf
+          style: italic
+        - asset: fonts/NeueHaasDisplayBold.ttf
+          weight: 600
+        - asset: fonts/NeueHaasDisplayBoldItalic.ttf
+          weight:  600
+          style: italic
+        - asset: fonts/NeueHaasDisplayBlack.ttf
+          weight: 800
+        - asset: fonts/NeueHaasDisplayBlackItalic.ttf
+          weight: 800
+          style: italic
+        - asset: fonts/NeueHaasDisplayLight.ttf
+          weight: 300
+        - asset: fonts/NeueHaasDisplayLightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: fonts/NeueHaasDisplayThin.ttf
+          weight: 200
+        - asset: fonts/NeueHaasDisplayThinItalic.ttf
+          weight: 200
+          style: italic
+        - asset: fonts/NeueHaasDisplayXThin.ttf
+          weight: 100
+        - asset: fonts/NeueHaasDisplayXThinItalic.ttf
+          weight: 100
+          style: italic
+    - family: NeueHaasRoman
+      fonts:
+        - asset: fonts/NeueHaasDisplayRoman.ttf
+        - asset: fonts/NeueHaasDisplayRomanItalic.ttf
+          style: italic
   # fonts:
   #   - family: Schyler
   #     fonts:
