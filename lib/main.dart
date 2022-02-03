@@ -55,27 +55,42 @@ class EliteHomePage extends StatelessWidget {
           ],
         ),
         body: Center(
-            child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(children: [
-                  Container(
-                      margin: EdgeInsets.all(8),
-                      height: 200,
-                      width: 200,
-                      color: Colors.green.shade300,
-                      child: Text("Item 1")),
-                  Container(
-                      margin: EdgeInsets.all(8),
-                      height: 200,
-                      width: 200,
-                      color: Colors.green.shade200,
-                      child: Text("Item 2")),
-                  Container(
-                      margin: EdgeInsets.all(8),
-                      height: 200,
-                      width: 200,
-                      color: Colors.green.shade800,
-                      child: Text("Item 3"))
-                ]))));
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(children: [
+                    Container(
+                        margin: EdgeInsets.all(8),
+                        height: 200,
+                        width: 200,
+                        color: Colors.green.shade300,
+                        child: Text("NBA")),
+                    Container(
+                        margin: EdgeInsets.all(8),
+                        height: 200,
+                        width: 200,
+                        color: Colors.green.shade200,
+                        child: Text("Football")),
+                  ])),
+              SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(children: [
+                    Container(
+                        margin: EdgeInsets.all(8),
+                        height: 200,
+                        width: 200,
+                        color: Colors.green.shade300,
+                        child: Text("Basketball")),
+                    Container(
+                        margin: EdgeInsets.all(8),
+                        height: 200,
+                        width: 200,
+                        color: Colors.green.shade200,
+                        child: Text("Football")),
+                  ]))
+            ])));
   }
 }
