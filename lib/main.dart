@@ -42,55 +42,12 @@ class EliteHomePage extends StatelessWidget {
         appBar: AppBar(
           elevation: 0.0,
           leading: const IconButton(
-            icon: Icon(Icons.menu),
+            icon: Image(image: AssetImage("assets/elite-logo-text.png")),
             tooltip: 'Navigation menu',
             onPressed: null,
           ),
-          actions: const <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              tooltip: 'Search',
-              onPressed: null,
-            ),
-          ],
+          actions: const <Widget>[],
         ),
-        body: Center(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(children: [
-                    Container(
-                        margin: EdgeInsets.all(8),
-                        height: 200,
-                        width: 200,
-                        color: Colors.green.shade300,
-                        child: Text("NBA")),
-                    Container(
-                        margin: EdgeInsets.all(8),
-                        height: 200,
-                        width: 200,
-                        color: Colors.green.shade200,
-                        child: Text("Football")),
-                  ])),
-              SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(children: [
-                    Container(
-                        margin: EdgeInsets.all(8),
-                        height: 200,
-                        width: 200,
-                        color: Colors.green.shade300,
-                        child: Text("Basketball")),
-                    Container(
-                        margin: EdgeInsets.all(8),
-                        height: 200,
-                        width: 200,
-                        color: Colors.green.shade200,
-                        child: Text("Football")),
-                  ]))
-            ])));
+        body: Center());
   }
 }
