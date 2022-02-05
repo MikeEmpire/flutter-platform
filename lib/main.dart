@@ -1,10 +1,5 @@
 import 'package:elite_mobile_app/widgets/search_nba_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-
-import 'counter.dart'; // Import the counter
-
-final counter = Counter(); // Instantiate the store
 
 void main() {
   runApp(const MyApp());
