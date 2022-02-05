@@ -1,3 +1,4 @@
+import 'package:elite_mobile_app/widgets/search_nba_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -39,22 +40,22 @@ class EliteHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          leading: const IconButton(
-            icon: Image(
-                image: AssetImage("assets/elite-logo-text.png"),
-                width: 400,
-                height: 300,
-                fit: BoxFit.contain),
-            tooltip: 'Navigation menu',
-            onPressed: null,
-          ),
-          actions: const <Widget>[],
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        leading: const IconButton(
+          icon: Image(
+              image: AssetImage("assets/elite-logo-text.png"),
+              width: 400,
+              height: 300,
+              fit: BoxFit.contain),
+          tooltip: 'Navigation menu',
+          onPressed: null,
         ),
-        body: const Center(
-            child: Text("Search For Player by name",
-                style: TextStyle(fontFamily: "NeueHaas"))));
+        actions: const <Widget>[],
+      ),
+      body:
+          Container(alignment: const Alignment(0, 0), child: SearchNBAPlayer()),
+    );
   }
 }
