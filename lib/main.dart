@@ -1,4 +1,4 @@
-import 'package:elite_mobile_app/widgets/search_nba_player.dart';
+import 'package:elite_mobile_app/screens/SearchNbaPlayer/search_nba_player.dart';
 import 'package:flutter/material.dart';
 
 void main() {

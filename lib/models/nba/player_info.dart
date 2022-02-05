@@ -5,31 +5,31 @@ import 'package:elite_mobile_app/models/nba/player_team_info.dart';
 import 'package:elite_mobile_app/models/nba/team_site.dart';
 
 class PlayerInfo {
-  final String temporaryDisplayName;
-  final String? firstName;
-  final String? lastName;
-  final String? personId;
-  final String? teamId;
-  final String? jersey;
-  final bool? isActive;
-  final String? pos;
-  final String? heightFeet;
-  final String? heightInches;
-  final String? heightMeters;
-  final String? weightPounds;
-  final String? weightKilograms;
-  final String? dateOfBirthUTC;
-  final TeamSite? teamSitesOnly;
-  final List<PlayerTeamInfo>? teams;
-  final PlayerDraftInfo? draft;
-  final String? nbaDebutYear;
-  final String? yearsPro;
-  final String? collegeName;
-  final String? lastAffiliation;
-  final String? country;
+  String? temporaryDisplayName;
+  String? firstName;
+  String? lastName;
+  String? personId;
+  String? teamId;
+  String? jersey;
+  bool? isActive;
+  String? pos;
+  String? heightFeet;
+  String? heightInches;
+  String? heightMeters;
+  String? weightPounds;
+  String? weightKilograms;
+  String? dateOfBirthUTC;
+  TeamSite? teamSitesOnly;
+  List<PlayerTeamInfo>? teams;
+  PlayerDraftInfo? draft;
+  String? nbaDebutYear;
+  String? yearsPro;
+  String? collegeName;
+  String? lastAffiliation;
+  String? country;
 
   PlayerInfo({
-    required this.temporaryDisplayName,
+    this.temporaryDisplayName,
     this.firstName,
     this.lastName,
     this.personId,
@@ -52,4 +52,27 @@ class PlayerInfo {
     this.lastAffiliation,
     this.country,
   });
+  PlayerInfo.fromJson(Map<String, dynamic> json) {
+    temporaryDisplayName = json['temporaryDisplayName'];
+    lastName = json['lastName'];
+    personId = json['personId'];
+    teamId = json['teamId'];
+    jersey = json['jersey'];
+    isActive = json['isActive'];
+    pos = json['pos'];
+    heightFeet = json['heightFeet'];
+    heightInches = json['heightInches'];
+    heightMeters = json['heightMeters'];
+    weightPounds = json['weightPounds'];
+    weightKilograms = json['weightKilograms'];
+    dateOfBirthUTC = json['dateOfBirthUTC'];
+    teamSitesOnly = json['teamSitesOnly'];
+    teams = json['teams'];
+    draft = json['draft'];
+    nbaDebutYear = json['nbaDebutYear'];
+    yearsPro = json['yearsPro'];
+    collegeName = json['collegeName'];
+    lastAffiliation = json['lastAffiliation'];
+    country = json['country'];
+  }
 }
