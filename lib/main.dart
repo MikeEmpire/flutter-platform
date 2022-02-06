@@ -12,14 +12,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Elite Mobile App',
       theme: ThemeData(primarySwatch: Colors.amber, fontFamily: "NeueHaas"),
-      home: EliteHomePage(),
+      home: const EliteHomePage(),
     );
   }
 }
 
 class EliteHomePage extends StatelessWidget {
   final String title;
-  EliteHomePage({Key? key, this.title = 'Home'}) : super(key: key);
+  const EliteHomePage({Key? key, this.title = 'Home'}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,8 @@ class EliteHomePage extends StatelessWidget {
         ),
         actions: const <Widget>[],
       ),
-      body: Container(alignment: const Alignment(0, 0), child: NBAPlayerPage()),
+      body: Container(
+          alignment: const Alignment(0, 0), child: const NBAPlayerPage()),
     );
   }
 }

@@ -6,21 +6,31 @@ import 'package:elite_mobile_app/services/http_service.dart';
 class NBAPlayerPage extends StatefulWidget {
   const NBAPlayerPage({Key? key}) : super(key: key);
   @override
-  _NBAPlayerPage createState() => _NBAPlayerPage();
+  _NBAPlayerPageState createState() => _NBAPlayerPageState();
 }
 
-class _NBAPlayerPage extends State<NBAPlayerPage> {
+class _NBAPlayerPageState extends State<NBAPlayerPage> {
   final HttpService httpService = HttpService();
+  final searchController = TextEditingController();
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       const Text('Search Nba Player'),
-      const TextField(
-        decoration: const InputDecoration(
-          border: const OutlineInputBorder(),
-          hintText: 'Enter a NBA player',
-        ),
-      ),
+      TextField(
+          controller: searchController,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: 'Enter a NBA player',
+          ),
+          onChanged: (text) {
+            print(searchController.text);
+          }),
       FutureBuilder(
           future: httpService.getPlayers(),
           builder:
@@ -31,7 +41,7 @@ class _NBAPlayerPage extends State<NBAPlayerPage> {
             }
             List<PlayerInfo> players = snapshot.data as List<PlayerInfo>;
             // ignore: todo
-            // TODO: FILTER BY INPUT VALUE
+            // TODO: FILTER PLAYERS BY CONTROLLER VALUE
             return Expanded(
                 child: Column(
               children: [
