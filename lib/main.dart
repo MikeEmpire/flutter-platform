@@ -1,4 +1,4 @@
-import 'package:elite_mobile_app/screens/SearchNbaPlayer/search_nba_player.dart';
+import 'package:elite_mobile_app/screens/SearchNbaPlayer/nba_player_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,23 +7,11 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Elite Mobile App',
-      theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.amber,
-          fontFamily: "NeueHaas"),
+      theme: ThemeData(primarySwatch: Colors.amber, fontFamily: "NeueHaas"),
       home: EliteHomePage(),
     );
   }
@@ -31,7 +19,7 @@ class MyApp extends StatelessWidget {
 
 class EliteHomePage extends StatelessWidget {
   final String title;
-  EliteHomePage({this.title = 'Home'});
+  EliteHomePage({Key? key, this.title = 'Home'}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +37,7 @@ class EliteHomePage extends StatelessWidget {
         ),
         actions: const <Widget>[],
       ),
-      body:
-          Container(alignment: const Alignment(0, 0), child: SearchNBAPlayer()),
+      body: Container(alignment: const Alignment(0, 0), child: NBAPlayerPage()),
     );
   }
 }
