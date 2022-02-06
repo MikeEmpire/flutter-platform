@@ -1,6 +1,6 @@
-import 'package:elite_mobile_app/models/nba/player_info.dart';
+// import 'package:elite_mobile_app/models/nba/player_info.dart';
 
-class AllPlayersResponse {
-  List<PlayerInfo>? players;
-  AllPlayersResponse({this.players});
-}
+// class AllPlayersResponse {
+//   List<PlayerInfo>? players;
+//   AllPlayersResponse({this.players});
+// }

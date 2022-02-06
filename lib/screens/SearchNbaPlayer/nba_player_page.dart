@@ -1,8 +1,7 @@
-// ignore_for_file: unnecessary_const
+import 'package:flutter/material.dart';
 
 import 'package:elite_mobile_app/models/nba/player_info.dart';
 import 'package:elite_mobile_app/services/http_service.dart';
-import 'package:flutter/material.dart';
 
 class NBAPlayerPage extends StatefulWidget {
   const NBAPlayerPage({Key? key}) : super(key: key);
@@ -33,13 +32,18 @@ class _NBAPlayerPage extends State<NBAPlayerPage> {
             List<PlayerInfo> players = snapshot.data as List<PlayerInfo>;
             // ignore: todo
             // TODO: FILTER BY INPUT VALUE
-            return ListView.builder(
-                itemCount: players.length > 10 ? 10 : players.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text(players[index].temporaryDisplayName)]);
-                });
+            return Expanded(
+                child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: players.length > 10 ? 10 : players.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(title: Text(players[index].firstName));
+                      }),
+                )
+              ],
+            ));
           })
     ]);
   }

@@ -9,4 +9,18 @@ class PlayerDraftInfo {
     this.roundNum,
     this.seasonYear,
   });
+  factory PlayerDraftInfo.fromJson(Map<String, dynamic> json) =>
+      PlayerDraftInfo(
+        teamId: json["teamId"],
+        pickNum: json["pickNum"],
+        roundNum: json["roundNum"],
+        seasonYear: json["seasonYear"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "teamId": teamId,
+        "pickNum": pickNum,
+        "roundNum": roundNum,
+        "seasonYear": seasonYear,
+      };
 }

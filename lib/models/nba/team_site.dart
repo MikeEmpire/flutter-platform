@@ -9,4 +9,16 @@ class TeamSite {
     this.displayAffiliation,
     this.freeAgentCode,
   });
+  factory TeamSite.fromJson(Map<String, dynamic> json) => TeamSite(
+      playerCode: json["playerCode"],
+      posFull: json["posFull"],
+      displayAffiliation: json["displayAffiliation"],
+      freeAgentCode: json["freeAgentCode"]);
+
+  Map<String, dynamic> toJson() => {
+        "playerCode": playerCode,
+        "posFull": posFull,
+        "displayAffiliation": displayAffiliation,
+        "freeAgentCode": freeAgentCode,
+      };
 }

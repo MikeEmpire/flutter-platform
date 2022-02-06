@@ -7,4 +7,14 @@ class PlayerTeamInfo {
     this.seasonStart,
     this.seasonEnd,
   });
+  factory PlayerTeamInfo.fromJson(Map<String, dynamic> json) => PlayerTeamInfo(
+        teamId: json["teamId"],
+        seasonStart: json["seasonSt;art"],
+        seasonEnd: json["seasonEnd"],
+      );
+  Map<String, dynamic> toJson() => {
+        "teamId": teamId,
+        "seasonStart": seasonStart,
+        "seasonEnd": seasonEnd,
+      };
 }
