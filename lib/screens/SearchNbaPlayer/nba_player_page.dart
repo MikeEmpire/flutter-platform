@@ -19,7 +19,11 @@ class _NBAPlayerPageState extends State<NBAPlayerPage> {
         padding: const EdgeInsets.all(5),
         alignment: const Alignment(0, 0),
         child: Column(children: <Widget>[
-          const Text('Search Nba Player'),
+          Text('Search Players By Name',
+              style: TextStyle(
+                  color: Colors.blueGrey.shade800,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24)),
           TextField(
             onChanged: (text) {
               setState(() {
