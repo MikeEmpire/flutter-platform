@@ -37,17 +37,32 @@ class _NBAPlayerPageState extends State<NBAPlayerPage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
                 child: Column(children: <Widget>[
-                  TextField(
-                    onChanged: (text) {
-                      setState(() {
-                        searchString = text.toLowerCase();
-                      });
-                    },
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter a NBA player',
-                        prefixIcon: Icon(Icons.person)),
-                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                              blurRadius: 1.2,
+                              offset: Offset(1.0, 1.0),
+                              color: Color.fromRGBO(0, 0, 0, 0.3)),
+                        ],
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      child: TextField(
+                        onChanged: (text) {
+                          setState(() {
+                            searchString = text.toLowerCase();
+                          });
+                        },
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.blueGrey.shade700,
+                        ),
+                        decoration: const InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintText: 'Enter a NBA player',
+                            prefixIcon: Icon(Icons.person)),
+                      )),
                   FutureBuilder(
                       future: _playersFuture,
                       builder: (BuildContext context,
@@ -85,7 +100,13 @@ class _NBAPlayerPageState extends State<NBAPlayerPage> {
                                 itemBuilder: (BuildContext context, int index) {
                                   String displayName =
                                       '${results[index].firstName} ${results[index].lastName}';
-                                  return ListTile(title: Text(displayName));
+                                  return Card(
+                                      child: ListTile(
+                                          title: Text(displayName,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 0.5)))));
                                 }));
                       })
                 ]),
