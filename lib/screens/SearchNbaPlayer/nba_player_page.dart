@@ -11,50 +11,58 @@ class NBAPlayerPage extends StatefulWidget {
 
 class _NBAPlayerPageState extends State<NBAPlayerPage> {
   final HttpService httpService = HttpService();
-  final searchController = TextEditingController();
-  @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
-  }
-
+  String searchString = "";
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      const Text('Search Nba Player'),
-      TextField(
-          controller: searchController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: 'Enter a NBA player',
+    final _playersFuture = httpService.getPlayers();
+    return Container(
+        padding: const EdgeInsets.all(5),
+        alignment: const Alignment(0, 0),
+        child: Column(children: <Widget>[
+          const Text('Search Nba Player'),
+          TextField(
+            onChanged: (text) {
+              setState(() {
+                searchString = text.toLowerCase();
+              });
+            },
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter a NBA player',
+                icon: Icon(Icons.person)),
           ),
-          onChanged: (text) {
-            print(searchController.text);
-          }),
-      FutureBuilder(
-          future: httpService.getPlayers(),
-          builder:
-              (BuildContext context, AsyncSnapshot<List<PlayerInfo>> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting ||
-                !snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            List<PlayerInfo> players = snapshot.data as List<PlayerInfo>;
-            // ignore: todo
-            // TODO: FILTER PLAYERS BY CONTROLLER VALUE
-            return Expanded(
-                child: Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: players.length > 10 ? 10 : players.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(title: Text(players[index].firstName));
-                      }),
-                )
-              ],
-            ));
-          })
-    ]);
+          FutureBuilder(
+              future: _playersFuture,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<PlayerInfo>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    !snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                List<PlayerInfo> players = snapshot.data as List<PlayerInfo>;
+                List<PlayerInfo> results = [];
+                if (searchString.isEmpty) {
+                  results = players;
+                } else {
+                  results = players
+                      .where((player) =>
+                          player.firstName
+                              .toLowerCase()
+                              .contains(searchString.toLowerCase()) ||
+                          player.lastName
+                              .toLowerCase()
+                              .contains(searchString.toLowerCase()))
+                      .toList();
+                }
+                return Expanded(
+                    child: ListView.builder(
+                        itemCount: results.length > 10 ? 10 : results.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          String displayName =
+                              '${results[index].firstName} ${results[index].lastName}';
+                          return ListTile(title: Text(displayName));
+                        }));
+              })
+        ]));
   }
 }
