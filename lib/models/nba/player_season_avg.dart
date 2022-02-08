@@ -1,9 +1,41 @@
-// class SeasonAverage {
-//   int gamesPlayed;
-//   int playerId;
+// import 'package:json_annotation/json_annotation.dart';
+
+// part 'player_season_avg.g.dart';
+
+// @JsonSerializable()
+// class PlayerSeasonAverage {
+//   PlayerSeasonAverage(
+//     this.games_played,
+//     this.player_id,
+//     this.season,
+//     this.min,
+//     this.fgm,
+//     this.fga,
+//     this.fg3m,
+//     this.fg3a,
+//     this.ftm,
+//     this.fta,
+//     this.oreb,
+//     this.dreb,
+//     this.reb,
+//     this.ast,
+//     this.stl,
+//     this.blk,
+//     this.turnover,
+//     this.pf,
+//     this.pts,
+//     this.fg_pct,
+//     this.fg3_pct,
+//     this.ft_pct,
+//   );
+//   double games_played;
+//   double player_id;
+//   double season;
+//   String min;
 //   double fgm;
 //   double fga;
 //   double fg3m;
+//   double fg3a;
 //   double ftm;
 //   double fta;
 //   double oreb;
@@ -14,35 +46,8 @@
 //   double blk;
 //   double turnover;
 //   double pf;
-//   double fgPct;
-//   double fg3Pct;
-//   double ftPct;
-//   String image;
-  
-//   const SeasonAverage({
-//     required this.gamesPlayed,
-//     required this.playerId,
-//     required this.fgm,
-//     required this.fga,
-//     required this.fg3m,
-//     required this.ftm,
-//     required this.fta,
-//     required this.oreb,
-//     required this.dreb,
-//     required this.reb,
-//     required this.ast,
-//     required this.stl,
-//     required this.blk,
-//     required this.turnover,
-//     required this.pf,
-//     required this.fgPct,
-//     required this.fg3Pct,
-//     required this.ftPct,
-//     required this.image,
-//   })
-//   factory SeasonAverage.fromJson(Map<String, dynamic> json) {
-//     return SeasonAverage(
-      
-//     )
-//   }
-// };
+//   double pts;
+//   double fg_pct;
+//   double fg3_pct;
+//   double ft_pct;
+// }
