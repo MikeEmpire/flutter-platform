@@ -79,109 +79,127 @@ class _NBAPlayerFormState extends State<NBAPlayerForm> {
               String? _gamesPlayed = stats.gamesPlayed ?? "";
               EdgeInsets columnPadding =
                   const EdgeInsets.symmetric(horizontal: 10, vertical: 0);
+              EdgeInsets textPadding =
+                  const EdgeInsets.symmetric(vertical: 5, horizontal: 0);
               return Container(
                   height: 150,
-                  child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Padding(
-                            padding: columnPadding,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Text("Games Played",
+                  child: ListView(scrollDirection: Axis.horizontal, children: <
+                      Widget>[
+                    Padding(
+                        padding: columnPadding,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: textPadding,
+                                  child: const Text("Games Played",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5))),
-                                  Text(_gamesPlayed,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 18,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5)))
-                                ])),
-                        Padding(
-                            padding: columnPadding,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Text("Pts",
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.5)))),
+                              Text(_gamesPlayed,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      color: Color.fromRGBO(0, 0, 0, 0.5)))
+                            ])),
+                    Padding(
+                        padding: columnPadding,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                                padding: textPadding,
+                                child: const Text("Pts",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 14,
-                                        color: Color.fromRGBO(0, 0, 0, 0.5))),
-                                Text(_ppg,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                        color: Color.fromRGBO(0, 0, 0, 0.5)))
-                              ],
-                            )),
-                        Padding(
-                            padding: columnPadding,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Text("Reb",
+                                        color: Color.fromRGBO(0, 0, 0, 0.5)))),
+                            Text(_ppg,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                    color: Color.fromRGBO(0, 0, 0, 0.5)))
+                          ],
+                        )),
+                    Padding(
+                        padding: columnPadding,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: textPadding,
+                                  child: const Text("Reb",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5))),
-                                  Text(_rpg,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 18,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5)))
-                                ])),
-                        Padding(
-                            padding: columnPadding,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Text("Ast",
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.5)))),
+                              Text(_rpg,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      color: Color.fromRGBO(0, 0, 0, 0.5)))
+                            ])),
+                    Padding(
+                        padding: columnPadding,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: textPadding,
+                                  child: const Text("Ast",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5))),
-                                  Text(_apg,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 18,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5)))
-                                ])),
-                        Padding(
-                            padding: columnPadding,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Text("FG %",
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.5)))),
+                              Text(_apg,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      color: Color.fromRGBO(0, 0, 0, 0.5)))
+                            ])),
+                    Padding(
+                        padding: columnPadding,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: textPadding,
+                                  child: const Text("FG %",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5))),
-                                  Text(_fgp,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 18,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5)))
-                                ])),
-                        Padding(
-                            padding: columnPadding,
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Text("FT %",
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.5)))),
+                              Text(_fgp,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      color: Color.fromRGBO(0, 0, 0, 0.5)))
+                            ])),
+                    Padding(
+                        padding: columnPadding,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: textPadding,
+                                  child: const Text("FT %",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5))),
-                                  Text(_ftp,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 18,
-                                          color: Color.fromRGBO(0, 0, 0, 0.5)))
-                                ]))
-                      ]));
+                                          color:
+                                              Color.fromRGBO(0, 0, 0, 0.5)))),
+                              Text(_ftp,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      color: Color.fromRGBO(0, 0, 0, 0.5)))
+                            ]))
+                  ]));
             })
       ]);
     }
