@@ -1,4 +1,6 @@
 import 'package:elite_mobile_app/models/nba/player_info.dart';
+import 'package:elite_mobile_app/models/nba/player_latest_stats.dart';
+import 'package:elite_mobile_app/services/player_service.dart';
 import 'package:flutter/material.dart';
 
 class NBAPlayerForm extends StatefulWidget {
@@ -12,10 +14,16 @@ class NBAPlayerForm extends StatefulWidget {
 class _NBAPlayerFormState extends State<NBAPlayerForm> {
   String searchString = "";
   PlayerInfo? selectedPlayer;
+  PlayerLatestStats? latestStats;
+  final PlayerService playerService = PlayerService();
   @override
   Widget build(BuildContext context) {
     var playerToShow = selectedPlayer;
     if (playerToShow != null) {
+      String _playerFutureName =
+          '${selectedPlayer?.firstName}${selectedPlayer?.lastName}';
+      final _playersFuture = playerService.getPlayersStats(_playerFutureName);
+
       String _baseImgUrl =
           'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/';
       String _imageUrl = '$_baseImgUrl/${selectedPlayer?.personId}.png';
@@ -44,7 +52,7 @@ class _NBAPlayerFormState extends State<NBAPlayerForm> {
               Expanded(
                   flex: 2,
                   child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                       child: Text(playerDisplayName,
                           style: TextStyle(
                               fontSize: 18,
@@ -52,6 +60,27 @@ class _NBAPlayerFormState extends State<NBAPlayerForm> {
                               color: Colors.blueGrey.shade700)))),
               const Expanded(flex: 0, child: Text("2021"))
             ]),
+        FutureBuilder(
+            future: _playersFuture,
+            builder: (BuildContext context,
+                AsyncSnapshot<PlayerLatestStats> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting ||
+                  !snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              PlayerLatestStats stats = snapshot.data as PlayerLatestStats;
+              String? _ppg = stats.ppg ?? "";
+              return Container(
+                  height: 150,
+                  child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [const Text("Pts"), Text(_ppg)],
+                        )
+                      ]));
+            })
         // Container(
         //   height: 150,
         // )

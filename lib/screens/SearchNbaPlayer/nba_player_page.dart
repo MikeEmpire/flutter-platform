@@ -1,7 +1,6 @@
+import 'package:elite_mobile_app/services/player_service.dart';
 import 'package:elite_mobile_app/widgets/nba_player_form.dart';
 import 'package:flutter/material.dart';
-
-import 'package:elite_mobile_app/services/http_service.dart';
 
 class NBAPlayerPage extends StatefulWidget {
   const NBAPlayerPage({Key? key}) : super(key: key);
@@ -10,10 +9,10 @@ class NBAPlayerPage extends StatefulWidget {
 }
 
 class _NBAPlayerPageState extends State<NBAPlayerPage> {
-  final HttpService httpService = HttpService();
+  final PlayerService playerService = PlayerService();
   @override
   Widget build(BuildContext context) {
-    final _playersFuture = httpService.getPlayers();
+    final _playersFuture = playerService.getPlayers();
     return Container(
         alignment: const Alignment(0, 0),
         child: Column(
