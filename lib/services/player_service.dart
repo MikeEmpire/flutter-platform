@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class HttpService {
   final String _baseUrl = "https://nba-api.afam.app/api/players";
   Future<List<PlayerInfo>> getPlayers() async {
-    final String _allPlayersUrl = '${_baseUrl}/all';
+    final String _allPlayersUrl = '$_baseUrl/all';
     final res = await http.get(Uri.parse(_allPlayersUrl));
     if (res.statusCode == 200) {
       Map<String, dynamic> unSerializedData = jsonDecode(res.body);
