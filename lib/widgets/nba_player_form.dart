@@ -13,6 +13,7 @@ class NBAPlayerForm extends StatefulWidget {
 
 class _NBAPlayerFormState extends State<NBAPlayerForm> {
   String searchString = "";
+  bool showGamelog = false;
   PlayerInfo? selectedPlayer;
   PlayerLatestStats? latestStats;
   final PlayerService playerService = PlayerService();

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:elite_mobile_app/models/nba/game_log.dart';
 import 'package:elite_mobile_app/models/nba/player_info.dart';
 import 'package:elite_mobile_app/models/nba/player_latest_stats.dart';
 import 'package:elite_mobile_app/models/nba/player_stats_res.dart';
@@ -35,6 +36,19 @@ class PlayerService {
       return latestStats;
     } else {
       throw "Unable to retrieve the player's stats";
+    }
+  }
+
+  Future<List<Gamelog>> getGamelog(fName, lName) async {
+    final String _gameUrl =
+        '$_baseUrl/gamelog?first_name=$fName&last_name=$lName';
+    final res = await http.get(Uri.parse(_gameUrl));
+    if (res.statusCode == 200) {
+      Map<String, dynamic> rawData = jsonDecode(res.body);
+      List<Gamelog> gameLog = rawData['gamelog'];
+      return gameLog;
+    } else {
+      throw "Unable to retrieve latest game stats";
     }
   }
 }
