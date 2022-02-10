@@ -1,3 +1,4 @@
+import 'package:elite_mobile_app/models/nba/game_log.dart';
 import 'package:elite_mobile_app/models/nba/player_info.dart';
 import 'package:elite_mobile_app/models/nba/player_latest_stats.dart';
 import 'package:elite_mobile_app/services/player_service.dart';
@@ -27,25 +28,29 @@ class _NBAPlayerFormState extends State<NBAPlayerForm> {
               .replaceAll(RegExp(r"\s+"), "");
       final Future<PlayerLatestStats> _seasonStatsFuture =
           playerService.getPlayersStats(_playerFutureName);
-
-      void removePlayer() {
+      final Future<List<Gamelog>> _gameLogFuture = playerService.getGamelog(
+          selectedPlayer?.firstName, selectedPlayer?.lastName);
+      Function? removePlayer() {
         setState(() {
           selectedPlayer = null;
         });
+        return null;
       }
 
-      void toggleGamelog() {
+      Function? toggleGamelog() {
         setState(() {
           showGamelog = !showGamelog;
         });
+        return null;
       }
 
       return NBAPlayerResult(
-        handleCancelTap: removePlayer(),
+        handleCancelTap: removePlayer,
         seasonStatsFuture: _seasonStatsFuture,
+        gameLogFuture: _gameLogFuture,
         playerToShow: playerToShow,
         showGamelog: showGamelog,
-        toggleGamelog: toggleGamelog(),
+        toggleGamelog: toggleGamelog,
       );
     }
     return Column(children: <Widget>[

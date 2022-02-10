@@ -12,7 +12,7 @@ class NBASeasonStatColumn extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
               child: Text(header,
                   style: const TextStyle(
                       fontWeight: FontWeight.w600,

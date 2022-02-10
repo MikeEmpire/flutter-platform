@@ -45,8 +45,10 @@ class PlayerService {
     final res = await http.get(Uri.parse(_gameUrl));
     if (res.statusCode == 200) {
       Map<String, dynamic> rawData = jsonDecode(res.body);
-      List<Gamelog> gameLog = rawData['gamelog'];
-      return gameLog;
+      List<dynamic> rawGamelog = rawData['gamelog'];
+      List<Gamelog> gamelog =
+          rawGamelog.map((dynamic log) => Gamelog.fromJson(log)).toList();
+      return gamelog;
     } else {
       throw "Unable to retrieve latest game stats";
     }
