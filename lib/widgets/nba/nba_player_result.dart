@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:elite_mobile_app/models/nba/game_log.dart';
 import 'package:elite_mobile_app/models/nba/player_info.dart';
 import 'package:elite_mobile_app/models/nba/player_latest_stats.dart';
@@ -30,46 +28,46 @@ class NBAPlayerResult extends StatelessWidget {
     String _baseImgUrl =
         'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/';
     String imageUrl = '$_baseImgUrl/${playerToShow?.personId}.png';
-    String _showLogText =
-        showGamelog ? "Hide Latest Games" : "Show Latest Games";
-    double _angle = showGamelog ? -90 : 0;
+    // String _showLogText =
+    //     showGamelog ? "Hide Latest Games" : "Show Latest Games";
+    // double _angle = showGamelog ? -90 : 0;
 
-    final List<String> _logHeaders = [
-      "Game",
-      "Opp",
-      "Min",
-      "Pts",
-      "FG",
-      "3FG",
-      "FT",
-      "Off Reb",
-      "Def Reb",
-      "Reb",
-      "Ast",
-      "Stl",
-      "Blk",
-      "PF",
-      "TO",
-      "+/-"
-    ];
-    final List<String> _logDataRow = [
-      "date",
-      "opp",
-      "min",
-      "pts",
-      "fg",
-      "threeFg",
-      "ft",
-      "offReb",
-      "defReb",
-      "reb",
-      "ast",
-      "stl",
-      "blk",
-      "pf",
-      "to",
-      "plusMinus",
-    ];
+    // final List<String> _logHeaders = [
+    //   "Game",
+    //   "Opp",
+    //   "Min",
+    //   "Pts",
+    //   "FG",
+    //   "3FG",
+    //   "FT",
+    //   "Off Reb",
+    //   "Def Reb",
+    //   "Reb",
+    //   "Ast",
+    //   "Stl",
+    //   "Blk",
+    //   "PF",
+    //   "TO",
+    //   "+/-"
+    // ];
+    // final List<String> _logDataRow = [
+    //   "date",
+    //   "opp",
+    //   "min",
+    //   "pts",
+    //   "fg",
+    //   "threeFg",
+    //   "ft",
+    //   "offReb",
+    //   "defReb",
+    //   "reb",
+    //   "ast",
+    //   "stl",
+    //   "blk",
+    //   "pf",
+    //   "to",
+    //   "plusMinus",
+    // ];
     return Column(children: [
       Row(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -124,49 +122,49 @@ class NBAPlayerResult extends StatelessWidget {
                       NBASeasonStatColumn("FT %", _ftp)
                     ]));
           }),
-      Row(textDirection: TextDirection.rtl, children: [
-        Text(_showLogText),
-        Transform.rotate(
-            angle: _angle * pi / 180,
-            child: IconButton(
-              onPressed: () => toggleGamelog(),
-              icon: const Icon(Icons.keyboard_arrow_left),
-            ))
-      ]),
-      SizedBox(
-          height: 40,
-          child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: List.from(_logHeaders.map((header) => Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Text(header)))))),
-      FutureBuilder(
-          future: gameLogFuture,
-          builder:
-              (BuildContext context, AsyncSnapshot<List<Gamelog>> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting ||
-                !snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            List<Gamelog> _log = snapshot.data as List<Gamelog>;
-            return SizedBox(
-                height: 300,
-                child: ListView.builder(
-                    itemCount: _log.length > 10 ? 10 : _log.length,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                          height: 40,
-                          child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: List.from(_logDataRow.map((stat) =>
-                                  Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5, vertical: 5),
-                                      child: Text(_log[index].date))))));
-                    }));
-          })
+      // Row(textDirection: TextDirection.rtl, children: [
+      //   Text(_showLogText),
+      //   Transform.rotate(
+      //       angle: _angle * pi / 180,
+      //       child: IconButton(
+      //         onPressed: () => toggleGamelog(),
+      //         icon: const Icon(Icons.keyboard_arrow_left),
+      //       ))
+      // ]),
+      // SizedBox(
+      //     height: 40,
+      //     child: ListView(
+      //         scrollDirection: Axis.horizontal,
+      //         children: List.from(_logHeaders.map((header) => Padding(
+      //             padding:
+      //                 const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      //             child: Text(header)))))),
+      // FutureBuilder(
+      //     future: gameLogFuture,
+      //     builder:
+      //         (BuildContext context, AsyncSnapshot<List<Gamelog>> snapshot) {
+      //       if (snapshot.connectionState == ConnectionState.waiting ||
+      //           !snapshot.hasData) {
+      //         return const Center(child: CircularProgressIndicator());
+      //       }
+      //       List<Gamelog> _log = snapshot.data as List<Gamelog>;
+      //       return SizedBox(
+      //           height: 300,
+      //           child: ListView.builder(
+      //               itemCount: _log.length > 10 ? 10 : _log.length,
+      //               scrollDirection: Axis.vertical,
+      //               itemBuilder: (BuildContext context, int index) {
+      //                 return SizedBox(
+      //                     height: 40,
+      //                     child: ListView(
+      //                         scrollDirection: Axis.horizontal,
+      //                         children: List.from(_logDataRow.map((stat) =>
+      //                             Padding(
+      //                                 padding: const EdgeInsets.symmetric(
+      //                                     horizontal: 5, vertical: 5),
+      //                                 child: Text(_log[index].date))))));
+      //               }));
+      //     })
     ]);
   }
 }
