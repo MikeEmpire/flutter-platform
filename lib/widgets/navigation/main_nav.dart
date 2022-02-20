@@ -5,18 +5,34 @@ class MainNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map> _mainOptions = [
+    final List<Map<String, dynamic>> _mainOptions = [
       {
-        "category": "Sports",
-        "backgroundColor": const Color.fromRGBO(134, 148, 188, 1),
+        "category": "SPORTS",
+        "backgroundColor": const Color.fromRGBO(223, 231, 253, 1),
+        "textColor": const Color.fromRGBO(134, 148, 188, 1)
       },
       {
-        "category": "Music",
+        "category": "MUSIC",
         "backgroundColor": const Color.fromRGBO(253, 237, 225, 1),
+        "textColor": const Color.fromRGBO(220, 203, 190, 1),
       },
       {
-        "category": "Culture",
+        "category": "CULTURE",
         "backgroundColor": const Color.fromRGBO(190, 225, 230, 1),
+        "textColor": const Color.fromRGBO(167, 191, 195, 1)
+      }
+    ];
+
+    final List<Map<String, dynamic>> _sportsOptions = [
+      {
+        "category": "NBA",
+        "backgroundColor": const Color.fromRGBO(223, 231, 253, 1),
+        "textColor": const Color.fromRGBO(134, 148, 188, 1)
+      },
+      {
+        "category": "NFL",
+        "backgroundColor": const Color.fromRGBO(253, 237, 225, 1),
+        "textColor": const Color.fromRGBO(220, 203, 190, 1),
       }
     ];
     return Container(
@@ -29,85 +45,76 @@ class MainNav extends StatelessWidget {
             topRight: Radius.circular(20),
           ),
         ),
-        child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 1.2,
-                              offset: Offset(1.0, 1.0),
-                              color: Color.fromRGBO(0, 0, 0, 0.3)),
-                        ],
-                        color: Color.fromRGBO(223, 231, 253, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: const SizedBox(
-                          height: 40,
-                          width: 130,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("SPORTS",
-                                style: TextStyle(
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromRGBO(134, 148, 188, 1))),
-                          ))),
-                  Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 1.2,
-                              offset: Offset(1.0, 1.0),
-                              color: Color.fromRGBO(0, 0, 0, 0.3)),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: const SizedBox(
-                          height: 40,
-                          width: 130,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Music",
-                              textAlign: TextAlign.end,
+        child: Column(children: [
+          SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    ..._mainOptions.map((mainOption) => Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 5),
+                        decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                                blurRadius: 1.2,
+                                offset: Offset(1.0, 1.0),
+                                color: Color.fromRGBO(0, 0, 0, 0.3)),
+                          ],
+                          color: mainOption['backgroundColor'],
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                        ),
+                        child: SizedBox(
+                            height: 40,
+                            width: 130,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(mainOption['category'],
+                                  style: TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.w600,
+                                      color: mainOption['textColor'])),
+                            ))))
+                  ])),
+          Container(
+              margin: const EdgeInsets.only(top: 10),
+              child: const SizedBox(height: 10)),
+          Container(
+              margin: const EdgeInsets.only(top: 10),
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        ..._mainOptions.map((mainOption) => Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 5),
+                            decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                    blurRadius: 1.2,
+                                    offset: Offset(1.0, 1.0),
+                                    color: Color.fromRGBO(0, 0, 0, 0.3)),
+                              ],
+                              color: mainOption['backgroundColor'],
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
                             ),
-                          ))),
-                  Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 5),
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 1.2,
-                              offset: Offset(1.0, 1.0),
-                              color: Color.fromRGBO(0, 0, 0, 0.3)),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: const SizedBox(
-                          height: 40,
-                          width: 130,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Culture",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic,
-                              ),
-                              textAlign: TextAlign.end,
-                            ),
-                          )))
-                ])));
+                            child: SizedBox(
+                                height: 40,
+                                width: 130,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(mainOption['category'],
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w600,
+                                          color: mainOption['textColor'])),
+                                ))))
+                      ])))
+        ]));
   }
 }

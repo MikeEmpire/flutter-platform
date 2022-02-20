@@ -21,14 +21,22 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           )),
-      home: const EliteHomePage(),
+      home: const EliteMainPage(),
     );
   }
 }
 
-class EliteHomePage extends StatelessWidget {
+class EliteMainPage extends StatefulWidget {
   final String title;
-  const EliteHomePage({Key? key, this.title = 'Home'}) : super(key: key);
+  const EliteMainPage({Key? key, this.title = 'Home'}) : super(key: key);
+  @override
+  _EliteMainPageState createState() => _EliteMainPageState();
+}
+
+class _EliteMainPageState extends State<EliteMainPage> {
+  String category = "sports";
+  String subCategory = "NBA";
+  Widget content = const NBAPlayerPage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +54,7 @@ class EliteHomePage extends StatelessWidget {
           ),
           actions: const <Widget>[],
         ),
-        body: Container(
-            alignment: const Alignment(0, 0), child: const NBAPlayerPage()),
-        bottomNavigationBar: MainNav());
+        body: Container(alignment: const Alignment(0, 0), child: content),
+        bottomNavigationBar: const MainNav());
   }
 }
