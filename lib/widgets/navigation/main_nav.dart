@@ -26,13 +26,13 @@ class MainNav extends StatelessWidget {
     final List<Map<String, dynamic>> _sportsOptions = [
       {
         "category": "NBA",
-        "backgroundColor": const Color.fromRGBO(223, 231, 253, 1),
-        "textColor": const Color.fromRGBO(134, 148, 188, 1)
+        "backgroundColor": const Color.fromRGBO(234, 228, 233, 1),
+        "textColor": const Color.fromRGBO(138, 138, 138, 1)
       },
       {
         "category": "NFL",
-        "backgroundColor": const Color.fromRGBO(253, 237, 225, 1),
-        "textColor": const Color.fromRGBO(220, 203, 190, 1),
+        "backgroundColor": const Color.fromRGBO(253, 226, 228, 1),
+        "textColor": const Color.fromRGBO(232, 146, 152, 1),
       }
     ];
     return Container(
@@ -51,7 +51,7 @@ class MainNav extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    ..._mainOptions.map((mainOption) => Container(
+                    ..._sportsOptions.map((mainOption) => Container(
                         margin: const EdgeInsets.only(right: 10),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 5),
@@ -78,11 +78,8 @@ class MainNav extends StatelessWidget {
                                       color: mainOption['textColor'])),
                             ))))
                   ])),
+          Container(child: const SizedBox(height: 10)),
           Container(
-              margin: const EdgeInsets.only(top: 10),
-              child: const SizedBox(height: 10)),
-          Container(
-              margin: const EdgeInsets.only(top: 10),
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
