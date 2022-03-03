@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 
 class MainNav extends StatefulWidget {
@@ -20,6 +18,10 @@ class _MainNavState extends State<MainNav> {
     return tab == state ? 0.3.toDouble() : 0.0.toDouble();
   }
 
+  double _imageOpacity(String tab, String state) {
+    return tab == state ? 1.0.toDouble() : 0.3.toDouble();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> _mainOptions = [
@@ -28,7 +30,7 @@ class _MainNavState extends State<MainNav> {
         "backgroundColor":
             Color.fromRGBO(223, 231, 253, _opacity("SPORTS", _mainNavTab)),
         "textColor":
-            Color.fromRGBO(134, 148, 188, _opacity("SPORTS", _mainNavTab))
+            Color.fromRGBO(134, 148, 188, _opacity("SPORTS", _mainNavTab)),
       },
       {
         "category": "MUSIC",
@@ -51,13 +53,15 @@ class _MainNavState extends State<MainNav> {
         "category": "NBA",
         "backgroundColor":
             Color.fromRGBO(234, 228, 233, _opacity("NBA", _subNavTab)),
-        "textColor": Color.fromRGBO(138, 138, 138, _opacity("NBA", _subNavTab))
+        "textColor": Color.fromRGBO(138, 138, 138, _opacity("NBA", _subNavTab)),
+        "image": const AssetImage("assets/nba-1.png")
       },
       {
         "category": "NFL",
         "backgroundColor":
             Color.fromRGBO(253, 226, 228, _opacity("NFL", _subNavTab)),
         "textColor": Color.fromRGBO(232, 146, 152, _opacity("NFL", _subNavTab)),
+        "image": const AssetImage("assets/nfl-thumbnail.png")
       }
     ];
     return Container(
@@ -101,11 +105,24 @@ class _MainNavState extends State<MainNav> {
                             width: 130,
                             child: Align(
                               alignment: Alignment.centerLeft,
-                              child: Text(subOption['category'],
-                                  style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.w600,
-                                      color: subOption['textColor'])),
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(subOption['category'],
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            fontWeight: FontWeight.w600,
+                                            color: subOption['textColor'])),
+                                    Opacity(
+                                        opacity: _imageOpacity(
+                                            subOption['category'], _subNavTab),
+                                        child: Image(
+                                            width: 100,
+                                            height: 100,
+                                            image: subOption['image'],
+                                            fit: BoxFit.contain))
+                                  ]),
                             ))))
                   ])),
           Container(child: const SizedBox(height: 10)),
