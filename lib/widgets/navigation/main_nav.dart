@@ -1,38 +1,63 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 
-class MainNav extends StatelessWidget {
+class MainNav extends StatefulWidget {
   const MainNav({Key? key}) : super(key: key);
+
+  @override
+  _MainNavState createState() => _MainNavState();
+}
+
+class _MainNavState extends State<MainNav> {
+  final String _mainNavTab = 'SPORTS';
+  final String _subNavTab = 'NBA';
+  double _opacity(String tab, String state) {
+    return tab == state ? 1.0.toDouble() : 0.7.toDouble();
+  }
+
+  double _boxShadowOpacity(String tab, String state) {
+    return tab == state ? 0.3.toDouble() : 0.0.toDouble();
+  }
 
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> _mainOptions = [
       {
         "category": "SPORTS",
-        "backgroundColor": const Color.fromRGBO(223, 231, 253, 1),
-        "textColor": const Color.fromRGBO(134, 148, 188, 1)
+        "backgroundColor":
+            Color.fromRGBO(223, 231, 253, _opacity("SPORTS", _mainNavTab)),
+        "textColor":
+            Color.fromRGBO(134, 148, 188, _opacity("SPORTS", _mainNavTab))
       },
       {
         "category": "MUSIC",
-        "backgroundColor": const Color.fromRGBO(253, 237, 225, 1),
-        "textColor": const Color.fromRGBO(220, 203, 190, 1),
+        "backgroundColor":
+            Color.fromRGBO(253, 237, 225, _opacity("MUSIC", _mainNavTab)),
+        "textColor":
+            Color.fromRGBO(220, 203, 190, _opacity("MUSIC", _mainNavTab)),
       },
       {
         "category": "CULTURE",
-        "backgroundColor": const Color.fromRGBO(190, 225, 230, 1),
-        "textColor": const Color.fromRGBO(167, 191, 195, 1)
+        "backgroundColor":
+            Color.fromRGBO(190, 225, 230, _opacity("CULTURE", _mainNavTab)),
+        "textColor":
+            Color.fromRGBO(167, 191, 195, _opacity("CULTURE", _mainNavTab))
       }
     ];
 
     final List<Map<String, dynamic>> _sportsOptions = [
       {
         "category": "NBA",
-        "backgroundColor": const Color.fromRGBO(234, 228, 233, 1),
-        "textColor": const Color.fromRGBO(138, 138, 138, 1)
+        "backgroundColor":
+            Color.fromRGBO(234, 228, 233, _opacity("NBA", _subNavTab)),
+        "textColor": Color.fromRGBO(138, 138, 138, _opacity("NBA", _subNavTab))
       },
       {
         "category": "NFL",
-        "backgroundColor": const Color.fromRGBO(253, 226, 228, 1),
-        "textColor": const Color.fromRGBO(232, 146, 152, 1),
+        "backgroundColor":
+            Color.fromRGBO(253, 226, 228, _opacity("NFL", _subNavTab)),
+        "textColor": Color.fromRGBO(232, 146, 152, _opacity("NFL", _subNavTab)),
       }
     ];
     return Container(
@@ -51,18 +76,23 @@ class MainNav extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    ..._sportsOptions.map((mainOption) => Container(
+                    ..._sportsOptions.map((subOption) => Container(
                         margin: const EdgeInsets.only(right: 10),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 5),
                         decoration: BoxDecoration(
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                                 blurRadius: 1.2,
-                                offset: Offset(1.0, 1.0),
-                                color: Color.fromRGBO(0, 0, 0, 0.3)),
+                                offset: const Offset(1.0, 1.0),
+                                color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    _boxShadowOpacity(
+                                        subOption['category'], _subNavTab))),
                           ],
-                          color: mainOption['backgroundColor'],
+                          color: subOption['backgroundColor'],
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                         ),
@@ -71,11 +101,11 @@ class MainNav extends StatelessWidget {
                             width: 130,
                             child: Align(
                               alignment: Alignment.centerLeft,
-                              child: Text(mainOption['category'],
+                              child: Text(subOption['category'],
                                   style: TextStyle(
                                       fontStyle: FontStyle.italic,
                                       fontWeight: FontWeight.w600,
-                                      color: mainOption['textColor'])),
+                                      color: subOption['textColor'])),
                             ))))
                   ])),
           Container(child: const SizedBox(height: 10)),
@@ -90,11 +120,17 @@ class MainNav extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 5),
                             decoration: BoxDecoration(
-                              boxShadow: const [
+                              boxShadow: [
                                 BoxShadow(
                                     blurRadius: 1.2,
-                                    offset: Offset(1.0, 1.0),
-                                    color: Color.fromRGBO(0, 0, 0, 0.3)),
+                                    offset: const Offset(1.0, 1.0),
+                                    color: Color.fromRGBO(
+                                        0,
+                                        0,
+                                        0,
+                                        _boxShadowOpacity(
+                                            mainOption['category'],
+                                            _mainNavTab))),
                               ],
                               color: mainOption['backgroundColor'],
                               borderRadius:
