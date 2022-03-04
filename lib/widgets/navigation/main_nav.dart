@@ -118,8 +118,8 @@ class _MainNavState extends State<MainNav> {
                                         opacity: _imageOpacity(
                                             subOption['category'], _subNavTab),
                                         child: Image(
-                                            width: 100,
-                                            height: 100,
+                                            width: 102,
+                                            height: 130,
                                             image: subOption['image'],
                                             fit: BoxFit.contain))
                                   ]),
