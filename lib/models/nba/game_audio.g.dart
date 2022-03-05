@@ -7,15 +7,9 @@ part of 'game_audio.dart';
 // **************************************************************************
 
 GameAudio _$GameAudioFromJson(Map<String, dynamic> json) => GameAudio(
-      (json['national'] as List<dynamic>)
-          .map((e) => GameAudioInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      (json['vTeam'] as List<dynamic>)
-          .map((e) => GameAudioInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      (json['hTeam'] as List<dynamic>)
-          .map((e) => GameAudioInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      json['national'] as Map<String, dynamic>?,
+      json['vTeam'] as Map<String, dynamic>?,
+      json['hTeam'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$GameAudioToJson(GameAudio instance) => <String, dynamic>{

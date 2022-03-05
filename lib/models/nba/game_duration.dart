@@ -5,7 +5,7 @@ part 'game_duration.g.dart';
 @JsonSerializable()
 class GameDuration {
   final String? hours;
-  final bool? minutes;
+  final String? minutes;
   GameDuration(this.hours, this.minutes);
   factory GameDuration.fromJson(Map<String, dynamic> data) =>
       _$GameDurationFromJson(data);

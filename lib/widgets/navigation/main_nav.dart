@@ -125,46 +125,44 @@ class _MainNavState extends State<MainNav> {
                                   ]),
                             ))))
                   ])),
-          Container(child: const SizedBox(height: 10)),
-          Container(
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        ..._mainOptions.map((mainOption) => Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 1.2,
-                                    offset: const Offset(1.0, 1.0),
-                                    color: Color.fromRGBO(
-                                        0,
-                                        0,
-                                        0,
-                                        _boxShadowOpacity(
-                                            mainOption['category'],
-                                            _mainNavTab))),
-                              ],
-                              color: mainOption['backgroundColor'],
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: SizedBox(
-                                height: 40,
-                                width: 130,
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(mainOption['category'],
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          fontWeight: FontWeight.w600,
-                                          color: mainOption['textColor'])),
-                                ))))
-                      ])))
+          const SizedBox(height: 10),
+          SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    ..._mainOptions.map((mainOption) => Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 5),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 1.2,
+                                offset: const Offset(1.0, 1.0),
+                                color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    _boxShadowOpacity(
+                                        mainOption['category'], _mainNavTab))),
+                          ],
+                          color: mainOption['backgroundColor'],
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                        ),
+                        child: SizedBox(
+                            height: 40,
+                            width: 130,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(mainOption['category'],
+                                  style: TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.w600,
+                                      color: mainOption['textColor'])),
+                            ))))
+                  ]))
         ]));
   }
 }

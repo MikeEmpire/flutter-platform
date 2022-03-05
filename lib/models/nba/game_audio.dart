@@ -1,13 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:elite_mobile_app/models/nba/game_audio_info.dart';
 
 part 'game_audio.g.dart';
 
 @JsonSerializable()
 class GameAudio {
-  List<GameAudioInfo> national;
-  List<GameAudioInfo> vTeam;
-  List<GameAudioInfo> hTeam;
+  Map<String, dynamic>? national;
+  Map<String, dynamic>? vTeam;
+  Map<String, dynamic>? hTeam;
 
   GameAudio(this.national, this.vTeam, this.hTeam);
 

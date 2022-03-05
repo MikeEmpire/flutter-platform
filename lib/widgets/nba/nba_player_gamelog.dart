@@ -10,6 +10,6 @@ class NBAPlayerGamelog extends StatelessWidget {
         height: 80,
         child: ListView(
             scrollDirection: Axis.horizontal,
-            children: <Widget>[Row(children: [])]));
+            children: <Widget>[Row(children: const [])]));
   }
 }

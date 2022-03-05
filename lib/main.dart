@@ -43,11 +43,12 @@ class _EliteMainPageState extends State<EliteMainPage> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.white,
-          leading: const IconButton(
-            icon: Image(
-                image: AssetImage("assets/elite-logo-text.png"),
+          leading: IconButton(
+            icon: Image.asset("assets/elite-logo-text.png",
                 width: 400,
                 height: 300,
+                cacheHeight: 60,
+                cacheWidth: 120,
                 fit: BoxFit.contain),
             tooltip: 'Navigation menu',
             onPressed: null,

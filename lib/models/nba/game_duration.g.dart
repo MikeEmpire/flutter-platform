@@ -8,7 +8,7 @@ part of 'game_duration.dart';
 
 GameDuration _$GameDurationFromJson(Map<String, dynamic> json) => GameDuration(
       json['hours'] as String?,
-      json['minutes'] as bool?,
+      json['minutes'] as String?,
     );
 
 Map<String, dynamic> _$GameDurationToJson(GameDuration instance) =>
