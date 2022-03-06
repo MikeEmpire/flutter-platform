@@ -1,3 +1,4 @@
+import 'package:elite_mobile_app/models/nba/additional_team_info.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'game_team_info.g.dart';
@@ -11,9 +12,9 @@ class GameTeamInfo {
   final String? seriesLoss;
   final String? score;
   List<dynamic>? linescore;
-
+  final AdditionalTeamInfo? additionalTeamInfo;
   GameTeamInfo(this.teamId, this.win, this.loss, this.seriesWin,
-      this.seriesLoss, this.score, this.linescore);
+      this.seriesLoss, this.score, this.linescore, this.additionalTeamInfo);
   factory GameTeamInfo.fromJson(Map<String, dynamic> data) =>
       _$GameTeamInfoFromJson(data);
   Map<String, dynamic> toJson() => _$GameTeamInfoToJson(this);

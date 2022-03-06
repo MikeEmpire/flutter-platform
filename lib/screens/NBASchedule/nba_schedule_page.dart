@@ -1,6 +1,7 @@
 import 'package:elite_mobile_app/models/nba/game_info.dart';
 import 'package:elite_mobile_app/services/game_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class NBASchedulePage extends StatefulWidget {
   const NBASchedulePage({Key? key}) : super(key: key);
@@ -45,13 +46,13 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                             Expanded(
                                 flex: 2,
                                 child: Column(children: [
-                                  Image.network(_homeTeamImg,
+                                  SvgPicture.network(_homeTeamImg,
                                       fit: BoxFit.cover, height: 60, width: 60)
                                 ])),
                             Expanded(
                                 flex: 2,
                                 child: Column(children: [
-                                  Image.network(_vTeamImg,
+                                  SvgPicture.network(_vTeamImg,
                                       fit: BoxFit.cover, height: 60, width: 60)
                                 ]))
                           ]);
