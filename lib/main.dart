@@ -15,11 +15,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.amber,
           fontFamily: "NeueHaas",
-          textTheme: const TextTheme(
-            headlineMedium: TextStyle(
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w600,
-            ),
+          textTheme: TextTheme(
+            headline1: TextStyle(
+                color: Colors.blueGrey.shade800,
+                fontWeight: FontWeight.bold,
+                fontSize: 24),
           )),
       home: const EliteMainPage(),
     );

@@ -28,10 +28,7 @@ class _NBAPlayerPageState extends State<NBAPlayerPage> {
               child: Padding(
                   padding: const EdgeInsets.only(bottom: 35),
                   child: Text('Search Players By Name',
-                      style: TextStyle(
-                          color: Colors.blueGrey.shade800,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24))),
+                      style: Theme.of(context).textTheme.headline1)),
             ),
             Expanded(
                 flex: 3,

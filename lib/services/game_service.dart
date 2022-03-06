@@ -5,8 +5,13 @@ import 'package:http/http.dart' as http;
 
 class GameService {
   final String _baseUrl = "https://nba-api.afam.app/api/games";
-  Future<List<GameInfo>> getGames() async {
-    final res = await http.get(Uri.parse(_baseUrl));
+  Future<List<GameInfo>> getGames(String? date) async {
+    String _url = _baseUrl;
+
+    if (date!.isNotEmpty) {
+      _url = '$_baseUrl?date=' + date;
+    }
+    final res = await http.get(Uri.parse(_url));
     if (res.statusCode == 200) {
       Map<String, dynamic> unSerializedData = jsonDecode(res.body);
       final body = unSerializedData['data'];
