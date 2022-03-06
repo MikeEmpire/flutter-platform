@@ -12,9 +12,9 @@ class GameTeamInfo {
   final String? seriesLoss;
   final String? score;
   List<dynamic>? linescore;
-  final AdditionalTeamInfo? additionalTeamInfo;
+  final AdditionalTeamInfo? additionalInfo;
   GameTeamInfo(this.teamId, this.win, this.loss, this.seriesWin,
-      this.seriesLoss, this.score, this.linescore, this.additionalTeamInfo);
+      this.seriesLoss, this.score, this.linescore, this.additionalInfo);
   factory GameTeamInfo.fromJson(Map<String, dynamic> data) =>
       _$GameTeamInfoFromJson(data);
   Map<String, dynamic> toJson() => _$GameTeamInfoToJson(this);

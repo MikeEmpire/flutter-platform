@@ -11,9 +11,10 @@ class NBASchedulePage extends StatefulWidget {
 
 class _NBASchedulePageState extends State<NBASchedulePage> {
   final GameService gameService = GameService();
-  String _getPlayerImg(String teamId) =>
-      'https://cdn.nba.com/logos/nba/' + teamId + '/primary/D/logo.svg';
-
+  String _getPlayerImg(String nickname) =>
+      'https://b.fssta.com/uploads/application/nba/team-logos/' +
+      nickname +
+      '.vresize.72.72.medium.0.png';
   @override
   Widget build(BuildContext context) {
     final Future<List<GameInfo>> _gameScheduleFuture = gameService.getGames();
@@ -36,23 +37,27 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                     child: ListView.builder(
                         itemCount: _gameSchedule.length,
                         itemBuilder: (BuildContext context, int index) {
-                          String homeTeamId =
-                              _gameSchedule[index].hTeam?.teamId as String;
-                          String awayTeamId =
-                              _gameSchedule[index].vTeam?.teamId as String;
-                          String _homeTeamImg = _getPlayerImg(homeTeamId);
-                          String _vTeamImg = _getPlayerImg(awayTeamId);
+                          String wNickname = _gameSchedule[index]
+                              .hTeam
+                              ?.additionalInfo
+                              ?.nickname as String;
+                          String vNickname = _gameSchedule[index]
+                              .vTeam
+                              ?.additionalInfo
+                              ?.nickname as String;
+                          String _homeTeamImg = _getPlayerImg(wNickname);
+                          String _vTeamImg = _getPlayerImg(vNickname);
                           return Row(children: [
                             Expanded(
                                 flex: 2,
                                 child: Column(children: [
-                                  SvgPicture.network(_homeTeamImg,
+                                  Image.network(_homeTeamImg,
                                       fit: BoxFit.cover, height: 60, width: 60)
                                 ])),
                             Expanded(
                                 flex: 2,
                                 child: Column(children: [
-                                  SvgPicture.network(_vTeamImg,
+                                  Image.network(_vTeamImg,
                                       fit: BoxFit.cover, height: 60, width: 60)
                                 ]))
                           ]);

@@ -14,10 +14,10 @@ GameTeamInfo _$GameTeamInfoFromJson(Map<String, dynamic> json) => GameTeamInfo(
       json['seriesLoss'] as String?,
       json['score'] as String?,
       json['linescore'] as List<dynamic>?,
-      json['additionalTeamInfo'] == null
+      json['additionalInfo'] == null
           ? null
           : AdditionalTeamInfo.fromJson(
-              json['additionalTeamInfo'] as Map<String, dynamic>),
+              json['additionalInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$GameTeamInfoToJson(GameTeamInfo instance) =>
@@ -29,5 +29,5 @@ Map<String, dynamic> _$GameTeamInfoToJson(GameTeamInfo instance) =>
       'seriesLoss': instance.seriesLoss,
       'score': instance.score,
       'linescore': instance.linescore,
-      'additionalTeamInfo': instance.additionalTeamInfo,
+      'additionalInfo': instance.additionalInfo,
     };
