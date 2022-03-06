@@ -2,6 +2,7 @@
 
 import 'package:elite_mobile_app/models/nba/game_info.dart';
 import 'package:elite_mobile_app/services/game_service.dart';
+import 'package:elite_mobile_app/widgets/nba/nba_game_status.dart';
 import 'package:elite_mobile_app/widgets/nba/nba_game_team_info.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-              flex: 1,
+              flex: 0,
               child: Text("Games Today",
                   style: Theme.of(context).textTheme.headline1)),
           Expanded(
@@ -44,10 +45,31 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                         child: ListView.builder(
                             itemCount: _gameSchedule.length,
                             itemBuilder: (BuildContext context, int index) {
+                              bool? isRecapAvail =
+                                  _gameSchedule[index].isRecapArticleAvail;
+                              bool? isGameActivated =
+                                  _gameSchedule[index].isGameActivated;
+                              int? currentPeriod =
+                                  _gameSchedule[index].period?.current;
+                              String status = '';
+                              if (isGameActivated == false &&
+                                  currentPeriod == 0) {
+                                status = 'haventStarted';
+                              }
+                              if (isGameActivated == true ||
+                                  currentPeriod! > 0 && currentPeriod < 4) {
+                                status = 'inProgress';
+                              }
+                              if (isRecapAvail == true && currentPeriod == 4) {
+                                status = 'done';
+                              }
                               return Row(children: [
                                 NBAGameTeamInfo(
                                     teamData: _gameSchedule[index].hTeam,
                                     isAway: false),
+                                NBAGameStatus(
+                                    gameStatus: status,
+                                    gameData: _gameSchedule[index]),
                                 NBAGameTeamInfo(
                                     teamData: _gameSchedule[index].vTeam,
                                     isAway: true)
