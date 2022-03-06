@@ -20,9 +20,13 @@ class MyApp extends StatelessWidget {
                 color: Colors.blueGrey.shade800,
                 fontWeight: FontWeight.bold,
                 fontSize: 24),
-            bodyText1: TextStyle(
+            headline5: TextStyle(
                 color: Colors.blueGrey.shade800,
                 fontWeight: FontWeight.w600,
+                fontSize: 21),
+            bodyText1: TextStyle(
+                color: Colors.blueGrey.shade800,
+                fontWeight: FontWeight.w500,
                 fontSize: 14,
                 fontStyle: FontStyle.italic),
           )),
@@ -52,7 +56,7 @@ class _EliteMainPageState extends State<EliteMainPage> {
             icon: Image.asset("assets/elite-logo-text.png",
                 width: 400,
                 height: 300,
-                cacheHeight: 60,
+                cacheHeight: 50,
                 cacheWidth: 120,
                 fit: BoxFit.contain),
             tooltip: 'Navigation menu',

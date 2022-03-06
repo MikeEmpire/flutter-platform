@@ -66,11 +66,12 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                               return Container(
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 0),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                       border: Border(
                                           bottom: BorderSide(
                                               width: 2,
-                                              color: Colors.blueGrey))),
+                                              color:
+                                                  Colors.blueGrey.shade100))),
                                   child: Row(children: [
                                     NBAGameTeamInfo(
                                         teamData: _gameSchedule[index].hTeam,
