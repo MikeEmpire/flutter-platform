@@ -63,17 +63,25 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                               if (isRecapAvail == true && currentPeriod == 4) {
                                 status = 'done';
                               }
-                              return Row(children: [
-                                NBAGameTeamInfo(
-                                    teamData: _gameSchedule[index].hTeam,
-                                    isAway: false),
-                                NBAGameStatus(
-                                    gameStatus: status,
-                                    gameData: _gameSchedule[index]),
-                                NBAGameTeamInfo(
-                                    teamData: _gameSchedule[index].vTeam,
-                                    isAway: true)
-                              ]);
+                              return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 0),
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                              width: 2,
+                                              color: Colors.blueGrey))),
+                                  child: Row(children: [
+                                    NBAGameTeamInfo(
+                                        teamData: _gameSchedule[index].hTeam,
+                                        isAway: false),
+                                    NBAGameStatus(
+                                        gameStatus: status,
+                                        gameData: _gameSchedule[index]),
+                                    NBAGameTeamInfo(
+                                        teamData: _gameSchedule[index].vTeam,
+                                        isAway: true)
+                                  ]));
                             }));
                   }))
         ]);

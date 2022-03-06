@@ -21,7 +21,8 @@ class NBAGameTeamInfo extends StatelessWidget {
         flex: 2,
         child: Column(children: [
           Image.network(_teamImg, fit: BoxFit.cover, height: 60, width: 60),
-          Text('$wins - ' + losses)
+          Text('$wins - ' + losses,
+              style: Theme.of(context).textTheme.bodyText1)
         ]));
   }
 }

@@ -20,6 +20,11 @@ class MyApp extends StatelessWidget {
                 color: Colors.blueGrey.shade800,
                 fontWeight: FontWeight.bold,
                 fontSize: 24),
+            bodyText1: TextStyle(
+                color: Colors.blueGrey.shade800,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                fontStyle: FontStyle.italic),
           )),
       home: const EliteMainPage(),
     );
