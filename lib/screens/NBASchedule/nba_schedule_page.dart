@@ -44,7 +44,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                         List<GameInfo> _gameSchedule =
                             snapshot.data as List<GameInfo>;
                         return SizedBox(
-                            height: 200,
+                            height: double.infinity,
                             child: ListView.builder(
                                 physics: const AlwaysScrollableScrollPhysics(),
                                 itemCount: _gameSchedule.length,

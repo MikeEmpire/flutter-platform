@@ -13,8 +13,12 @@ class NBAGameStatus extends StatelessWidget {
     Widget contentToShow() {
       Widget widget;
       String seriesText = '';
-      String seriesLoss = gameData?.hTeam?.seriesLoss as String;
-      String seriesWin = gameData?.hTeam?.seriesWin as String;
+      String seriesLoss = gameData?.hTeam?.seriesLoss == ""
+          ? "0"
+          : gameData?.hTeam?.seriesWin as String;
+      String seriesWin = gameData?.hTeam?.seriesWin == ""
+          ? "0"
+          : gameData?.hTeam?.seriesLoss as String;
       String nickname = gameData?.hTeam?.additionalInfo?.nickname as String;
       String startTimeEastern = gameData?.startTimeEastern as String;
       String hTeamScore = gameData?.hTeam?.score as String;
