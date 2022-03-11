@@ -49,8 +49,6 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                 physics: const AlwaysScrollableScrollPhysics(),
                                 itemCount: _gameSchedule.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  bool? isRecapAvail =
-                                      _gameSchedule[index].isRecapArticleAvail;
                                   bool? isGameActivated =
                                       _gameSchedule[index].isGameActivated;
                                   int? currentPeriod =
@@ -64,7 +62,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                       currentPeriod! > 0 && currentPeriod < 4) {
                                     status = 'inProgress';
                                   }
-                                  if (isRecapAvail == true &&
+                                  if (isGameActivated == false &&
                                       currentPeriod == 4) {
                                     status = 'done';
                                   }
