@@ -18,7 +18,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
   @override
   Widget build(BuildContext context) {
     final String formatted = YYYY_MM_DD + 'T03:24:00';
-    final Future<List<GameInfo>> _gameScheduleFuture =
+    Future<List<GameInfo>> _gameScheduleFuture =
         gameService.getGames(formatted);
     return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,7 +90,11 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                       ]));
                                 }));
                       }),
-                  onRefresh: () => gameService.getGames(formatted)))
+                  onRefresh: () async {
+                    setState(() {
+                      _gameScheduleFuture = gameService.getGames(formatted);
+                    });
+                  }))
         ]);
   }
 }
