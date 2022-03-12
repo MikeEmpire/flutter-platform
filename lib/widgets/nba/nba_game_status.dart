@@ -52,7 +52,7 @@ class NBAGameStatus extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5),
             ),
             Padding(
-                padding: EdgeInsets.only(bottom: 5),
+                padding: const EdgeInsets.only(bottom: 5),
                 child: Text('$clock $currentPeriodStr Qtr',
                     style: Theme.of(context).textTheme.bodyText1))
           ]);
