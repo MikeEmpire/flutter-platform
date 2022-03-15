@@ -63,7 +63,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                     status = 'inProgress';
                                   }
                                   if (isGameActivated == false &&
-                                      currentPeriod == 4) {
+                                      currentPeriod! > 3) {
                                     status = 'done';
                                   }
                                   return Container(
