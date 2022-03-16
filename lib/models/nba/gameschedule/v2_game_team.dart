@@ -13,7 +13,7 @@ class V2GameTeam {
   int? losses;
   int? score;
   String? seed;
-  int? inBonus;
+  String? inBonus;
   int? timeoutsRemaining;
   List<V2GamePeriod>? periods;
   V2GameTeam(

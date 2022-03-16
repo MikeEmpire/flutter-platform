@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:elite_mobile_app/models/nba/game_info.dart';
+import 'package:elite_mobile_app/models/nba/gameschedule/v2_game_schedule.dart';
 import 'package:elite_mobile_app/services/game_service.dart';
 import 'package:elite_mobile_app/widgets/nba/nba_game_status.dart';
 import 'package:elite_mobile_app/widgets/nba/nba_game_team_info.dart';
@@ -17,9 +18,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
   String YYYY_MM_DD = DateTime.now().toIso8601String().split('T').first;
   @override
   Widget build(BuildContext context) {
-    final String formatted = YYYY_MM_DD + 'T03:24:00';
-    Future<List<GameInfo>> _gameScheduleFuture =
-        gameService.getGames(formatted);
+    Future<List<V2GameSchedule>> _gameScheduleFuture = gameService.getGamesV2();
     return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -34,36 +33,32 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                   child: FutureBuilder(
                       future: _gameScheduleFuture,
                       builder: (BuildContext context,
-                          AsyncSnapshot<List<GameInfo>> snapshot) {
+                          AsyncSnapshot<List<V2GameSchedule>> snapshot) {
                         if (snapshot.connectionState ==
                                 ConnectionState.waiting ||
                             !snapshot.hasData) {
                           return const Center(
                               child: CircularProgressIndicator());
                         }
-                        List<GameInfo> _gameSchedule =
-                            snapshot.data as List<GameInfo>;
+                        List<V2GameSchedule> _gameSchedule =
+                            snapshot.data as List<V2GameSchedule>;
                         return SizedBox(
                             height: double.infinity,
                             child: ListView.builder(
                                 physics: const AlwaysScrollableScrollPhysics(),
                                 itemCount: _gameSchedule.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  bool? isGameActivated =
-                                      _gameSchedule[index].isGameActivated;
-                                  int? currentPeriod =
-                                      _gameSchedule[index].period?.current;
-                                  String status = '';
-                                  if (isGameActivated == false &&
-                                      currentPeriod == 0) {
+                                  String? status = '';
+                                  int? gameStatus =
+                                      _gameSchedule[index].gameStatus;
+
+                                  if (gameStatus == 1) {
                                     status = 'haventStarted';
                                   }
-                                  if (isGameActivated == true ||
-                                      currentPeriod! > 0 && currentPeriod < 4) {
+                                  if (gameStatus == 2) {
                                     status = 'inProgress';
                                   }
-                                  if (isGameActivated == false &&
-                                      currentPeriod! > 3) {
+                                  if (gameStatus! > 2) {
                                     status = 'done';
                                   }
                                   return Container(
@@ -78,21 +73,21 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                       child: Row(children: [
                                         NBAGameTeamInfo(
                                             teamData:
-                                                _gameSchedule[index].hTeam,
+                                                _gameSchedule[index].homeTeam,
                                             isAway: false),
                                         NBAGameStatus(
                                             gameStatus: status,
                                             gameData: _gameSchedule[index]),
                                         NBAGameTeamInfo(
                                             teamData:
-                                                _gameSchedule[index].vTeam,
+                                                _gameSchedule[index].awayTeam,
                                             isAway: true)
                                       ]));
                                 }));
                       }),
                   onRefresh: () async {
                     setState(() {
-                      _gameScheduleFuture = gameService.getGames(formatted);
+                      _gameScheduleFuture = gameService.getGamesV2();
                     });
                   }))
         ]);

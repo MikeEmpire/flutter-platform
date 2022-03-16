@@ -1,11 +1,12 @@
 import 'package:elite_mobile_app/models/nba/game_team_info.dart';
+import 'package:elite_mobile_app/models/nba/gameschedule/v2_game_team.dart';
 import 'package:flutter/material.dart';
 
 class NBAGameTeamInfo extends StatelessWidget {
   const NBAGameTeamInfo(
       {Key? key, required this.teamData, required this.isAway})
       : super(key: key);
-  final GameTeamInfo? teamData;
+  final V2GameTeam? teamData;
   final bool isAway;
   @override
   Widget build(BuildContext context) {
@@ -13,10 +14,9 @@ class NBAGameTeamInfo extends StatelessWidget {
         'https://b.fssta.com/uploads/application/nba/team-logos/' +
         nickname +
         '.vresize.72.72.medium.0.png';
-    String _teamImg =
-        _getPlayerImg(teamData?.additionalInfo?.nickname as String);
-    String wins = teamData?.win as String;
-    String losses = teamData?.loss as String;
+    String _teamImg = _getPlayerImg(teamData?.teamName as String);
+    String? wins = teamData?.wins.toString();
+    String losses = teamData?.losses.toString() as String;
     return Expanded(
         flex: 2,
         child: Column(children: [

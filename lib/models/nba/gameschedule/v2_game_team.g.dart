@@ -15,7 +15,7 @@ V2GameTeam _$V2GameTeamFromJson(Map<String, dynamic> json) => V2GameTeam(
       json['losses'] as int?,
       json['score'] as int?,
       json['seed'] as String?,
-      json['inBonus'] as int?,
+      json['inBonus'] as String?,
       json['timeoutsRemaining'] as int?,
     )..periods = (json['periods'] as List<dynamic>?)
         ?.map((e) => V2GamePeriod.fromJson(e as Map<String, dynamic>))
