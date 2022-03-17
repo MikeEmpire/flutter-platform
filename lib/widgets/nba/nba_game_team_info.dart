@@ -14,7 +14,8 @@ class NBAGameTeamInfo extends StatelessWidget {
         'https://b.fssta.com/uploads/application/nba/team-logos/' +
         nickname +
         '.vresize.72.72.medium.0.png';
-    String _teamImg = _getPlayerImg(teamData?.teamName as String);
+    String _teamImg = _getPlayerImg(
+        teamData?.teamName?.replaceAll(RegExp(r"\s+"), "") as String);
     String? wins = teamData?.wins.toString();
     String losses = teamData?.losses.toString() as String;
     return Expanded(

@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:elite_mobile_app/models/nba/game_info.dart';
 import 'package:elite_mobile_app/models/nba/gameschedule/v2_game_schedule.dart';
 import 'package:elite_mobile_app/services/game_service.dart';
 import 'package:elite_mobile_app/widgets/nba/nba_game_status.dart';
