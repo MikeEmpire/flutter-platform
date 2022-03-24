@@ -1,4 +1,4 @@
-import 'package:elite_mobile_app/screens/SearchNbaPlayer/nba_player_page.dart';
+import 'package:elite_mobile_app/screens/nba_page.dart';
 import 'package:elite_mobile_app/widgets/navigation/main_nav.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +45,7 @@ class EliteMainPage extends StatefulWidget {
 class _EliteMainPageState extends State<EliteMainPage> {
   String category = "sports";
   String subCategory = "NBA";
-  Widget content = const NBAPlayerPage();
+  Widget content = const NBAPage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
