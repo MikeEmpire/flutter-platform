@@ -68,103 +68,105 @@ class NBAPlayerResult extends StatelessWidget {
     //   "to",
     //   "plusMinus",
     // ];
-    return Column(children: [
-      Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          textBaseline: TextBaseline.alphabetic,
-          children: <Widget>[
-            Expanded(
-                flex: 0,
-                child: IconButton(
-                  icon: const Icon(Icons.cancel_rounded),
-                  onPressed: () => handleCancelTap(),
-                )),
-            Expanded(
-                flex: 0,
-                child: Image.network(imageUrl,
-                    fit: BoxFit.cover, height: 60, width: 60)),
-            Expanded(
-                flex: 2,
-                child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child: Text(playerDisplayName,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blueGrey.shade700)))),
-            const Expanded(flex: 0, child: Text("2021"))
-          ]),
-      FutureBuilder(
-          future: seasonStatsFuture,
-          builder: (BuildContext context,
-              AsyncSnapshot<PlayerLatestStats> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting ||
-                !snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            PlayerLatestStats stats = snapshot.data as PlayerLatestStats;
-            String? _ppg = stats.ppg ?? "";
-            String? _rpg = stats.rpg ?? "";
-            String? _apg = stats.apg ?? "";
-            String? _fgp = stats.fgp != null ? '${stats.fgp} %' : "";
-            String? _ftp = stats.ftp != null ? '${stats.ftp} %' : "";
-            String? _gamesPlayed = stats.gamesPlayed ?? "";
-            return SizedBox(
-                height: 55,
-                child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      NBASeasonStatColumn("Games Played", _gamesPlayed),
-                      NBASeasonStatColumn("Pts", _ppg),
-                      NBASeasonStatColumn("Reb", _rpg),
-                      NBASeasonStatColumn("Ast", _apg),
-                      NBASeasonStatColumn("FG %", _fgp),
-                      NBASeasonStatColumn("FT %", _ftp)
-                    ]));
-          }),
-      // Row(textDirection: TextDirection.rtl, children: [
-      //   Text(_showLogText),
-      //   Transform.rotate(
-      //       angle: _angle * pi / 180,
-      //       child: IconButton(
-      //         onPressed: () => toggleGamelog(),
-      //         icon: const Icon(Icons.keyboard_arrow_left),
-      //       ))
-      // ]),
-      // SizedBox(
-      //     height: 40,
-      //     child: ListView(
-      //         scrollDirection: Axis.horizontal,
-      //         children: List.from(_logHeaders.map((header) => Padding(
-      //             padding:
-      //                 const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      //             child: Text(header)))))),
-      // FutureBuilder(
-      //     future: gameLogFuture,
-      //     builder:
-      //         (BuildContext context, AsyncSnapshot<List<Gamelog>> snapshot) {
-      //       if (snapshot.connectionState == ConnectionState.waiting ||
-      //           !snapshot.hasData) {
-      //         return const Center(child: CircularProgressIndicator());
-      //       }
-      //       List<Gamelog> _log = snapshot.data as List<Gamelog>;
-      //       return SizedBox(
-      //           height: 300,
-      //           child: ListView.builder(
-      //               itemCount: _log.length > 10 ? 10 : _log.length,
-      //               scrollDirection: Axis.vertical,
-      //               itemBuilder: (BuildContext context, int index) {
-      //                 return SizedBox(
-      //                     height: 40,
-      //                     child: ListView(
-      //                         scrollDirection: Axis.horizontal,
-      //                         children: List.from(_logDataRow.map((stat) =>
-      //                             Padding(
-      //                                 padding: const EdgeInsets.symmetric(
-      //                                     horizontal: 5, vertical: 5),
-      //                                 child: Text(_log[index].date))))));
-      //               }));
-      //     })
-    ]);
+    return Container(
+        margin: const EdgeInsets.only(bottom: 20),
+        child: Column(children: [
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              textBaseline: TextBaseline.alphabetic,
+              children: <Widget>[
+                Expanded(
+                    flex: 0,
+                    child: IconButton(
+                      icon: const Icon(Icons.cancel_rounded),
+                      onPressed: () => handleCancelTap(),
+                    )),
+                Expanded(
+                    flex: 0,
+                    child: Image.network(imageUrl,
+                        fit: BoxFit.cover, height: 60, width: 60)),
+                Expanded(
+                    flex: 2,
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: Text(playerDisplayName,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blueGrey.shade700)))),
+                const Expanded(flex: 0, child: Text("2021"))
+              ]),
+          FutureBuilder(
+              future: seasonStatsFuture,
+              builder: (BuildContext context,
+                  AsyncSnapshot<PlayerLatestStats> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    !snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                PlayerLatestStats stats = snapshot.data as PlayerLatestStats;
+                String? _ppg = stats.ppg ?? "";
+                String? _rpg = stats.rpg ?? "";
+                String? _apg = stats.apg ?? "";
+                String? _fgp = stats.fgp != null ? '${stats.fgp} %' : "";
+                String? _ftp = stats.ftp != null ? '${stats.ftp} %' : "";
+                String? _gamesPlayed = stats.gamesPlayed ?? "";
+                return SizedBox(
+                    height: 55,
+                    child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          NBASeasonStatColumn("Games Played", _gamesPlayed),
+                          NBASeasonStatColumn("Pts", _ppg),
+                          NBASeasonStatColumn("Reb", _rpg),
+                          NBASeasonStatColumn("Ast", _apg),
+                          NBASeasonStatColumn("FG %", _fgp),
+                          NBASeasonStatColumn("FT %", _ftp)
+                        ]));
+              }),
+          // Row(textDirection: TextDirection.rtl, children: [
+          //   Text(_showLogText),
+          //   Transform.rotate(
+          //       angle: _angle * pi / 180,
+          //       child: IconButton(
+          //         onPressed: () => toggleGamelog(),
+          //         icon: const Icon(Icons.keyboard_arrow_left),
+          //       ))
+          // ]),
+          // SizedBox(
+          //     height: 40,
+          //     child: ListView(
+          //         scrollDirection: Axis.horizontal,
+          //         children: List.from(_logHeaders.map((header) => Padding(
+          //             padding:
+          //                 const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          //             child: Text(header)))))),
+          // FutureBuilder(
+          //     future: gameLogFuture,
+          //     builder:
+          //         (BuildContext context, AsyncSnapshot<List<Gamelog>> snapshot) {
+          //       if (snapshot.connectionState == ConnectionState.waiting ||
+          //           !snapshot.hasData) {
+          //         return const Center(child: CircularProgressIndicator());
+          //       }
+          //       List<Gamelog> _log = snapshot.data as List<Gamelog>;
+          //       return SizedBox(
+          //           height: 300,
+          //           child: ListView.builder(
+          //               itemCount: _log.length > 10 ? 10 : _log.length,
+          //               scrollDirection: Axis.vertical,
+          //               itemBuilder: (BuildContext context, int index) {
+          //                 return SizedBox(
+          //                     height: 40,
+          //                     child: ListView(
+          //                         scrollDirection: Axis.horizontal,
+          //                         children: List.from(_logDataRow.map((stat) =>
+          //                             Padding(
+          //                                 padding: const EdgeInsets.symmetric(
+          //                                     horizontal: 5, vertical: 5),
+          //                                 child: Text(_log[index].date))))));
+          //               }));
+          //     })
+        ]));
   }
 }

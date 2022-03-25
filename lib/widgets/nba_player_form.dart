@@ -6,8 +6,16 @@ import 'package:elite_mobile_app/widgets/nba/nba_player_result.dart';
 import 'package:flutter/material.dart';
 
 class NBAPlayerForm extends StatefulWidget {
-  const NBAPlayerForm({Key? key, required this.playersFuture})
+  const NBAPlayerForm(
+      {Key? key,
+      required this.playersFuture,
+      required this.selectedPlayer,
+      required this.setPlayer,
+      required this.removePlayer})
       : super(key: key);
+  final PlayerInfo? selectedPlayer;
+  final Function setPlayer;
+  final Function removePlayer;
   final Future<List<PlayerInfo>> playersFuture;
   @override
   _NBAPlayerFormState createState() => _NBAPlayerFormState();
@@ -16,26 +24,19 @@ class NBAPlayerForm extends StatefulWidget {
 class _NBAPlayerFormState extends State<NBAPlayerForm> {
   String searchString = "";
   bool showGamelog = false;
-  PlayerInfo? selectedPlayer;
   PlayerLatestStats? latestStats;
   final PlayerService playerService = PlayerService();
   @override
   Widget build(BuildContext context) {
-    var playerToShow = selectedPlayer;
+    var playerToShow = widget.selectedPlayer;
     if (playerToShow != null) {
       String _playerFutureName =
-          '${selectedPlayer?.firstName}${selectedPlayer?.lastName}'
+          '${widget.selectedPlayer?.firstName}${widget.selectedPlayer?.lastName}'
               .replaceAll(RegExp(r"\s+"), "");
       final Future<PlayerLatestStats> _seasonStatsFuture =
           playerService.getPlayersStats(_playerFutureName);
       final Future<List<Gamelog>> _gameLogFuture = playerService.getGamelog(
-          selectedPlayer?.firstName, selectedPlayer?.lastName);
-      Function? removePlayer() {
-        setState(() {
-          selectedPlayer = null;
-        });
-        return null;
-      }
+          widget.selectedPlayer?.firstName, widget.selectedPlayer?.lastName);
 
       Function? toggleGamelog() {
         setState(() {
@@ -45,7 +46,7 @@ class _NBAPlayerFormState extends State<NBAPlayerForm> {
       }
 
       return NBAPlayerResult(
-        handleCancelTap: removePlayer,
+        handleCancelTap: widget.removePlayer,
         seasonStatsFuture: _seasonStatsFuture,
         gameLogFuture: _gameLogFuture,
         playerToShow: playerToShow,
@@ -112,12 +113,11 @@ class _NBAPlayerFormState extends State<NBAPlayerForm> {
                     itemBuilder: (BuildContext context, int index) {
                       String displayName =
                           '${results[index].firstName} ${results[index].lastName}';
+                      PlayerInfo player = results[index];
                       return Card(
                           child: ListTile(
                               onTap: () {
-                                setState(() {
-                                  selectedPlayer = results[index];
-                                });
+                                widget.setPlayer(player);
                               },
                               title: Text(displayName,
                                   style: const TextStyle(

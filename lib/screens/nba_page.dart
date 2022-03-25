@@ -9,7 +9,7 @@ class NBAPage extends StatefulWidget {
 }
 
 class _NBAPageState extends State<NBAPage> {
-  String pageToShow = "Schedule";
+  String pageToShow = "Search";
   @override
   Widget build(BuildContext context) {
     Widget contentToShow() {

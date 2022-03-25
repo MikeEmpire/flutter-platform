@@ -13,6 +13,29 @@ class _NBAPlayerPageState extends State<NBAPlayerPage> {
   final PlayerService playerService = PlayerService();
   PlayerInfo? selectedPlayer;
   PlayerInfo? secondSelectedPlayer;
+  Function? setSelectedPlayer(p) {
+    setState(() => selectedPlayer = p);
+    return null;
+  }
+
+  Function? removeSelectedPlayer() {
+    setState(() {
+      selectedPlayer = null;
+      secondSelectedPlayer = null;
+    });
+    return null;
+  }
+
+  Function? setSecondPlayer(p) {
+    setState(() => secondSelectedPlayer = p);
+    return null;
+  }
+
+  Function? removeSecondPlayer() {
+    setState(() => secondSelectedPlayer = null);
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final _playersFuture = playerService.getPlayers();
@@ -30,7 +53,20 @@ class _NBAPlayerPageState extends State<NBAPlayerPage> {
           child: Container(
             alignment: const Alignment(0, 0),
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-            child: NBAPlayerForm(playersFuture: _playersFuture),
+            child: Column(children: [
+              NBAPlayerForm(
+                  playersFuture: _playersFuture,
+                  selectedPlayer: selectedPlayer,
+                  setPlayer: setSelectedPlayer,
+                  removePlayer: removeSelectedPlayer),
+              if (selectedPlayer != null) ...[
+                NBAPlayerForm(
+                    playersFuture: _playersFuture,
+                    selectedPlayer: secondSelectedPlayer,
+                    setPlayer: setSecondPlayer,
+                    removePlayer: removeSecondPlayer)
+              ]
+            ]),
           ))
     ]);
   }
