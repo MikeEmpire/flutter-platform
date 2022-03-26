@@ -1,3 +1,4 @@
+import 'package:elite_mobile_app/screens/nba_article_page.dart';
 import 'package:elite_mobile_app/screens/nba_player_page.dart';
 import 'package:elite_mobile_app/screens/nba_schedule_page.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,9 @@ class _NBAPageState extends State<NBAPage> {
       switch (pageToShow) {
         case ("Schedule"):
           widget = const NBASchedulePage();
+          break;
+        case ("Articles"):
+          widget = const NBAArticlePage();
           break;
         default:
           widget = const NBAPlayerPage();
@@ -63,12 +67,12 @@ class _NBAPageState extends State<NBAPage> {
                               onPressed: () => {setPage('Schedule')},
                               icon: const Icon(Icons.calendar_today,
                                   color: Colors.white))),
-                      const Align(
+                      Align(
                           alignment: Alignment.center,
                           child: IconButton(
                               iconSize: 18,
-                              onPressed: null,
-                              icon: Icon(Icons.article_outlined,
+                              onPressed: () => {setPage('Articles')},
+                              icon: const Icon(Icons.article_outlined,
                                   color: Colors.white)))
                     ])),
           ),
