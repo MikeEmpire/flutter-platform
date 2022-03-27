@@ -16,6 +16,10 @@ class _NBAArticlePageState extends State<NBAArticlePage> {
     Future<List<EliteArticle>> _eliteArticleFuture =
         articleService.getArticles();
     return Column(children: <Widget>[
+      Expanded(
+          flex: 0,
+          child:
+              Text("Articles", style: Theme.of(context).textTheme.headline1)),
       FutureBuilder(
           future: _eliteArticleFuture,
           builder: (BuildContext context,
@@ -28,17 +32,48 @@ class _NBAArticlePageState extends State<NBAArticlePage> {
             List<EliteArticle> _eliteArticles =
                 snapshot.data as List<EliteArticle>;
 
-            final double height = MediaQuery.of(context).size.height - 253;
+            final double height = MediaQuery.of(context).size.height - 282;
 
             return CarouselSlider.builder(
               itemCount: _eliteArticles.length,
               itemBuilder:
                   (BuildContext context, int articleIndex, int pageIndex) {
                 return Center(
-                    child: Image.network(
-                        _eliteArticles[articleIndex].headerImgUrl,
-                        fit: BoxFit.cover,
-                        height: height));
+                    child: Stack(children: [
+                  Container(
+                      height: height,
+                      decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  _eliteArticles[articleIndex].headerImgUrl)))),
+                  Container(
+                    height: height,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        gradient: LinearGradient(
+                            begin: FractionalOffset.topCenter,
+                            end: FractionalOffset.bottomCenter,
+                            colors: [
+                              Colors.black.withOpacity(0.2),
+                              Colors.white,
+                            ],
+                            stops: const [
+                              0.0,
+                              1.3
+                            ])),
+                  ),
+                  Container(
+                    height: height,
+                    width: 400,
+                    decoration: const BoxDecoration(color: Colors.transparent),
+                    child: Text(
+                      _eliteArticles[articleIndex].title,
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
+                  ),
+                ]));
               },
               options: CarouselOptions(
                 autoPlay: true,

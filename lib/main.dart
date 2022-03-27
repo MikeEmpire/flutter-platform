@@ -20,6 +20,12 @@ class MyApp extends StatelessWidget {
                 color: Colors.blueGrey.shade800,
                 fontWeight: FontWeight.bold,
                 fontSize: 24),
+            headline2: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+                letterSpacing: 0.9,
+                fontSize: 48),
             headline5: TextStyle(
                 color: Colors.blueGrey.shade800,
                 fontWeight: FontWeight.w600,
