@@ -16,10 +16,12 @@ class _NBAArticlePageState extends State<NBAArticlePage> {
     Future<List<EliteArticle>> _eliteArticleFuture =
         articleService.getArticles();
     return Column(children: <Widget>[
-      Expanded(
-          flex: 0,
-          child:
-              Text("Articles", style: Theme.of(context).textTheme.headline1)),
+      Container(
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          child: Expanded(
+              flex: 0,
+              child: Text("Articles",
+                  style: Theme.of(context).textTheme.headline1))),
       FutureBuilder(
           future: _eliteArticleFuture,
           builder: (BuildContext context,
@@ -32,7 +34,7 @@ class _NBAArticlePageState extends State<NBAArticlePage> {
             List<EliteArticle> _eliteArticles =
                 snapshot.data as List<EliteArticle>;
 
-            final double height = MediaQuery.of(context).size.height - 282;
+            final double height = MediaQuery.of(context).size.height - 292;
 
             return CarouselSlider.builder(
               itemCount: _eliteArticles.length,
@@ -67,6 +69,7 @@ class _NBAArticlePageState extends State<NBAArticlePage> {
                   Container(
                     height: height,
                     width: 400,
+                    margin: const EdgeInsets.fromLTRB(15, 7, 3, 0),
                     decoration: const BoxDecoration(color: Colors.transparent),
                     child: Text(
                       _eliteArticles[articleIndex].title,
