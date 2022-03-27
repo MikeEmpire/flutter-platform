@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:elite_mobile_app/models/articles/elite_article.dart';
 import 'package:elite_mobile_app/services/article_service.dart';
+import 'package:elite_mobile_app/widgets/animations/animated_text.dart';
+import 'package:elite_mobile_app/widgets/nba/nba_article.dart';
 import 'package:flutter/material.dart';
 
 class NBAArticlePage extends StatefulWidget {
@@ -9,8 +11,20 @@ class NBAArticlePage extends StatefulWidget {
   _NBAArticlePageState createState() => _NBAArticlePageState();
 }
 
-class _NBAArticlePageState extends State<NBAArticlePage> {
+class _NBAArticlePageState extends State<NBAArticlePage>
+    with SingleTickerProviderStateMixin {
   final ArticleService articleService = ArticleService();
+  late Animation<double> animation;
+  late AnimationController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    animation = CurvedAnimation(parent: controller, curve: Curves.bounceInOut);
+    controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     Future<List<EliteArticle>> _eliteArticleFuture =
@@ -41,42 +55,8 @@ class _NBAArticlePageState extends State<NBAArticlePage> {
               itemBuilder:
                   (BuildContext context, int articleIndex, int pageIndex) {
                 return Center(
-                    child: Stack(children: [
-                  Container(
-                      height: height,
-                      decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  _eliteArticles[articleIndex].headerImgUrl)))),
-                  Container(
-                    height: height,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        gradient: LinearGradient(
-                            begin: FractionalOffset.topCenter,
-                            end: FractionalOffset.bottomCenter,
-                            colors: [
-                              Colors.black.withOpacity(0.2),
-                              Colors.white,
-                            ],
-                            stops: const [
-                              0.0,
-                              1.3
-                            ])),
-                  ),
-                  Container(
-                    height: height,
-                    width: 400,
-                    margin: const EdgeInsets.fromLTRB(15, 7, 3, 0),
-                    decoration: const BoxDecoration(color: Colors.transparent),
-                    child: Text(
-                      _eliteArticles[articleIndex].title,
-                      style: Theme.of(context).textTheme.headline2,
-                    ),
-                  ),
-                ]));
+                    child: NBAArticle(
+                        article: _eliteArticles[articleIndex], height: height));
               },
               options: CarouselOptions(
                 autoPlay: true,
@@ -89,5 +69,11 @@ class _NBAArticlePageState extends State<NBAArticlePage> {
             );
           })
     ]);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
