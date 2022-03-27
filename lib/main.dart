@@ -25,6 +25,13 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
                 letterSpacing: 0.9,
+                shadows: [
+                  Shadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.3),
+                    offset: Offset(4, 4),
+                    blurRadius: 10,
+                  )
+                ],
                 fontSize: 48),
             headline5: TextStyle(
                 color: Colors.blueGrey.shade800,

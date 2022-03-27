@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:elite_mobile_app/models/articles/elite_article.dart';
 import 'package:elite_mobile_app/services/article_service.dart';
-import 'package:elite_mobile_app/widgets/animations/animated_text.dart';
 import 'package:elite_mobile_app/widgets/nba/nba_article.dart';
 import 'package:flutter/material.dart';
 
@@ -55,6 +54,7 @@ class _NBAArticlePageState extends State<NBAArticlePage>
                 enlargeCenterPage: true,
                 autoPlay: true,
                 aspectRatio: 16 / 9,
+                autoPlayInterval: const Duration(seconds: 8),
                 autoPlayCurve: Curves.fastOutSlowIn,
                 enableInfiniteScroll: true,
                 autoPlayAnimationDuration: const Duration(milliseconds: 1300),
