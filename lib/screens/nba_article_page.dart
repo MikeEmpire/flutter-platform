@@ -16,14 +16,6 @@ class _NBAArticlePageState extends State<NBAArticlePage>
   final ArticleService articleService = ArticleService();
   late Animation<double> animation;
   late AnimationController controller;
-  @override
-  void initState() {
-    super.initState();
-    controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    animation = CurvedAnimation(parent: controller, curve: Curves.bounceInOut);
-    controller.forward();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,21 +51,17 @@ class _NBAArticlePageState extends State<NBAArticlePage>
                         article: _eliteArticles[articleIndex], height: height));
               },
               options: CarouselOptions(
-                autoPlay: true,
-                viewportFraction: 1.0,
                 height: height,
-                enlargeCenterPage: false,
-                autoPlayInterval: const Duration(seconds: 8),
-                scrollDirection: Axis.horizontal,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                aspectRatio: 16 / 9,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: const Duration(milliseconds: 1300),
+                viewportFraction: 1,
               ),
             );
           })
     ]);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 }

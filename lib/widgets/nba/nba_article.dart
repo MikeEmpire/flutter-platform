@@ -1,11 +1,12 @@
 import 'package:elite_mobile_app/models/articles/elite_article.dart';
-import 'package:elite_mobile_app/widgets/animations/animated_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NBAArticle extends StatefulWidget {
-  const NBAArticle({Key? key, required this.article, required this.height})
-      : super(key: key);
+  const NBAArticle({
+    Key? key,
+    required this.article,
+    required this.height,
+  }) : super(key: key);
   final EliteArticle article;
   final double height;
   @override
@@ -14,24 +15,20 @@ class NBAArticle extends StatefulWidget {
 
 class _NBAArticleState extends State<NBAArticle>
     with SingleTickerProviderStateMixin {
-  late final controller = AnimationController(
-    duration: const Duration(seconds: 2),
-    vsync: this,
-  );
-  late final animation = CurvedAnimation(
-    parent: controller,
-    curve: Curves.easeInOut,
-  );
+  double _height = 0;
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _height = widget.height;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    controller.forward();
     return Stack(children: [
       Container(
           height: widget.height,
@@ -56,15 +53,15 @@ class _NBAArticleState extends State<NBAArticle>
                   1.6
                 ])),
       ),
-      Container(
-          height: widget.height,
+      AnimatedContainer(
+          height: _height,
           width: 400,
+          curve: Curves.easeOut,
           margin: const EdgeInsets.fromLTRB(15, 7, 3, 0),
           decoration: const BoxDecoration(color: Colors.transparent),
-          child: FadeTransition(
-              opacity: animation,
-              child: Text(widget.article.title,
-                  style: Theme.of(context).textTheme.headline2)))
+          duration: const Duration(seconds: 3),
+          child: Text(widget.article.title,
+              style: Theme.of(context).textTheme.headline2))
     ]);
   }
 }
