@@ -29,6 +29,8 @@ class _NBAArticleState extends State<NBAArticle>
 
   @override
   Widget build(BuildContext context) {
+    final _authorName = widget.article.authorData?.displayName as String;
+    final _articleText = widget.article.title + '\n \n' + _authorName;
     return Stack(children: [
       Container(
           height: widget.height,
@@ -54,14 +56,14 @@ class _NBAArticleState extends State<NBAArticle>
                 ])),
       ),
       AnimatedContainer(
-          height: _height,
-          width: 400,
-          curve: Curves.easeOut,
-          margin: const EdgeInsets.fromLTRB(15, 7, 3, 0),
-          decoration: const BoxDecoration(color: Colors.transparent),
-          duration: const Duration(seconds: 3),
-          child: Text(widget.article.title,
-              style: Theme.of(context).textTheme.headline2))
+        height: _height,
+        width: 400,
+        curve: Curves.easeOut,
+        margin: const EdgeInsets.fromLTRB(15, 7, 3, 0),
+        decoration: const BoxDecoration(color: Colors.transparent),
+        duration: const Duration(seconds: 3),
+        child: Text(_articleText, style: Theme.of(context).textTheme.headline2),
+      )
     ]);
   }
 }

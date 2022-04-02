@@ -9,7 +9,7 @@ class ArticleService {
     final res = await http.get(Uri.parse(_baseUrl));
     if (res.statusCode == 200) {
       Map<String, dynamic> rawData = jsonDecode(res.body);
-      List<dynamic> rawArticles = rawData['articles'];
+      List<dynamic> rawArticles = rawData['flutterArticles'];
       List<EliteArticle> articles = rawArticles
           .map((dynamic article) => EliteArticle.fromJson(article))
           .toList();
