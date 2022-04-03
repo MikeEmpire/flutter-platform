@@ -8,6 +8,9 @@ part of 'elite_article.dart';
 
 EliteArticle _$EliteArticleFromJson(Map<String, dynamic> json) => EliteArticle(
       json['body'] as String,
+      (json['flutterBody'] as List<dynamic>)
+          .map((e) => ArticleBody.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['authorData'] == null
           ? null
           : EliteAuthor.fromJson(json['authorData'] as Map<String, dynamic>),
@@ -26,6 +29,7 @@ Map<String, dynamic> _$EliteArticleToJson(EliteArticle instance) =>
       'headerImgUrl': instance.headerImgUrl,
       'body': instance.body,
       'authorData': instance.authorData,
+      'flutterBody': instance.flutterBody,
       'tags': instance.tags,
       'category': instance.category,
       'subCategory': instance.subCategory,
