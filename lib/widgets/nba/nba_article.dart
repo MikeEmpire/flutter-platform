@@ -1,4 +1,5 @@
 import 'package:elite_mobile_app/models/articles/elite_article.dart';
+import 'package:elite_mobile_app/screens/nba_article.dart';
 import 'package:flutter/material.dart';
 
 class NBAArticle extends StatefulWidget {
@@ -20,7 +21,7 @@ class _NBAArticleState extends State<NBAArticle>
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         _height = widget.height;
       });
@@ -32,13 +33,15 @@ class _NBAArticleState extends State<NBAArticle>
     final _authorName = widget.article.authorData?.displayName as String;
     final _articleText = widget.article.title + '\n \n' + _authorName;
     return Stack(children: [
-      Container(
-          height: widget.height,
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(widget.article.headerImgUrl)))),
+      Hero(
+          tag: 'articleImage',
+          child: Container(
+              height: widget.height,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(widget.article.headerImgUrl))))),
       Container(
         height: widget.height,
         decoration: BoxDecoration(
@@ -58,11 +61,22 @@ class _NBAArticleState extends State<NBAArticle>
       AnimatedContainer(
         height: _height,
         width: 400,
-        curve: Curves.easeOut,
+        curve: Curves.easeOutExpo,
         margin: const EdgeInsets.fromLTRB(15, 7, 3, 0),
         decoration: const BoxDecoration(color: Colors.transparent),
         duration: const Duration(seconds: 3),
-        child: Text(_articleText, style: Theme.of(context).textTheme.headline2),
+        child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NBAArticleScreen(
+                      article: widget.article,
+                    ),
+                  ));
+            },
+            child: Text(_articleText,
+                style: Theme.of(context).textTheme.headline2)),
       )
     ]);
   }
