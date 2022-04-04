@@ -14,18 +14,31 @@ class NBAArticleScreen extends StatelessWidget {
       final startIndex = twitterUrl.lastIndexOf("/");
       final lastIndex = twitterUrl.length;
       final twitterUsername = twitterUrl.substring(startIndex + 1, lastIndex);
+      final String displayName = article.authorData?.displayName as String;
+      final String nameToShow = 'By: ' + displayName;
       final String imgUrl = 'https://unavatar.io/twitter/' + twitterUsername;
       return Column(children: [
         Row(
           children: [
-            Text(article.authorData?.displayName as String,
-                style: const TextStyle(color: Colors.black)),
-            Image.network(imgUrl, fit: BoxFit.contain, height: 60, width: 60)
+            CircleAvatar(radius: 30, backgroundImage: NetworkImage(imgUrl)),
+            Container(width: 20),
+            Text(nameToShow,
+                style: TextStyle(
+                    color: Colors.blueGrey.shade800,
+                    fontSize: 18,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w800)),
           ],
         ),
+        Container(height: 20),
         ...articleBody.map((body) {
           if (body.dataType == 'paragraph') {
-            return Text(body.rawData);
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Text(body.rawData,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w500, height: 1.5)),
+            );
           }
           if (body.dataType == 'figure') {
             return Image.network(body.rawData);
