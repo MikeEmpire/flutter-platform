@@ -80,6 +80,7 @@ class NBAArticleScreen extends StatelessWidget {
                   tag: 'articleImage',
                   child: Image.network(article.headerImgUrl)),
               Expanded(
+                  flex: 1,
                   child: SingleChildScrollView(
                       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: _articleBody(article.flutterBody)))

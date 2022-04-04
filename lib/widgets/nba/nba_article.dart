@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elite_mobile_app/models/articles/elite_article.dart';
 import 'package:elite_mobile_app/screens/nba_article.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,8 @@ class _NBAArticleState extends State<NBAArticle>
                   color: Colors.transparent,
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(widget.article.headerImgUrl))))),
+                      image: CachedNetworkImageProvider(
+                          widget.article.headerImgUrl))))),
       Container(
         height: widget.height,
         decoration: BoxDecoration(

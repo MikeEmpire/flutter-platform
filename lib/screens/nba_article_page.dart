@@ -20,48 +20,40 @@ class _NBAArticlePageState extends State<NBAArticlePage>
   Widget build(BuildContext context) {
     Future<List<EliteArticle>> _eliteArticleFuture =
         articleService.getArticles();
-    return Column(children: <Widget>[
-      Container(
-          margin: const EdgeInsets.symmetric(vertical: 5),
-          child: Expanded(
-              flex: 0,
-              child: Text("Articles",
-                  style: Theme.of(context).textTheme.headline1))),
-      FutureBuilder(
-          future: _eliteArticleFuture,
-          builder: (BuildContext context,
-              AsyncSnapshot<List<EliteArticle>> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting ||
-                !snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            List<EliteArticle> _eliteArticles =
-                snapshot.data as List<EliteArticle>;
-
-            final double height = MediaQuery.of(context).size.height - 292;
-
-            return CarouselSlider.builder(
-              itemCount: _eliteArticles.length,
-              itemBuilder:
-                  (BuildContext context, int articleIndex, int pageIndex) {
-                return Center(
-                    child: NBAArticle(
-                        article: _eliteArticles[articleIndex], height: height));
-              },
-              options: CarouselOptions(
-                height: height,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 16 / 9,
-                autoPlayInterval: const Duration(seconds: 8),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: const Duration(milliseconds: 1300),
-                viewportFraction: 1,
-              ),
-            );
-          })
-    ]);
+    return SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: FutureBuilder(
+            future: _eliteArticleFuture,
+            builder: (BuildContext context,
+                AsyncSnapshot<List<EliteArticle>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting ||
+                  !snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              List<EliteArticle> _eliteArticles =
+                  snapshot.data as List<EliteArticle>;
+              final double height = MediaQuery.of(context).size.height - 292;
+              return CarouselSlider.builder(
+                itemCount: _eliteArticles.length,
+                itemBuilder:
+                    (BuildContext context, int articleIndex, int pageIndex) {
+                  return Center(
+                      child: NBAArticle(
+                          article: _eliteArticles[articleIndex],
+                          height: height));
+                },
+                options: CarouselOptions(
+                  height: height,
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayInterval: const Duration(seconds: 8),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: const Duration(milliseconds: 1300),
+                  viewportFraction: 1,
+                ),
+              );
+            }));
   }
 }
