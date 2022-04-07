@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:elite_mobile_app/models/nba/game_boxscore_res.dart';
 import 'package:elite_mobile_app/models/nba/game_info.dart';
 import 'package:elite_mobile_app/models/nba/gameschedule/v2_game_schedule.dart';
 import 'package:http/http.dart' as http;
@@ -37,6 +38,18 @@ class GameService {
       return games;
     } else {
       throw "Unable to retrieve schedule";
+    }
+  }
+
+  Future<GameBoxscoreRes> getBoxscore(String code, String date) async {
+    String _url = '$_baseUrl/stats?date=' + date + '&?code=$code';
+    final res = await http.get(Uri.parse(_url));
+    if (res.statusCode == 200) {
+      dynamic rawData = jsonDecode(res.body);
+      GameBoxscoreRes data = GameBoxscoreRes.fromJson(rawData);
+      return data;
+    } else {
+      throw "Unable to retrieve boxscore";
     }
   }
 }

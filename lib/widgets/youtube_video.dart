@@ -11,10 +11,10 @@ class YoutubeVideo extends StatefulWidget {
 
 class _YoutubeVideoState extends State<YoutubeVideo> {
   late YoutubePlayerController _controller;
-  late PlayerState _playerState;
-  late YoutubeMetaData _videoMetaData;
-  double _volume = 100;
-  bool _muted = false;
+  // late PlayerState _playerState;
+  // late YoutubeMetaData _videoMetaData;
+  // double _volume = 100;
+  // bool _muted = false;
   bool _isPlayerReady = false;
   @override
   void initState() {
@@ -23,23 +23,23 @@ class _YoutubeVideoState extends State<YoutubeVideo> {
     void listener() {
       if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
         setState(() {
-          _playerState = _controller.value.playerState;
-          _videoMetaData = _controller.metadata;
+          // _playerState = _controller.value.playerState;
+          // _videoMetaData = _controller.metadata;
         });
       }
     }
 
-    void deactivate() {
-      // Pauses video while navigating to next page.
-      _controller.pause();
-      super.deactivate();
-    }
+    // void deactivate() {
+    //   // Pauses video while navigating to next page.
+    //   _controller.pause();
+    //   super.deactivate();
+    // }
 
-    @override
-    void dispose() {
-      _controller.dispose();
-      super.dispose();
-    }
+    // @override
+    // void dispose() {
+    //   _controller.dispose();
+    //   super.dispose();
+    // }
 
     final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl) as String;
     _controller = YoutubePlayerController(
