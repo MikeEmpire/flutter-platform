@@ -1,0 +1,76 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'active_player.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ActivePlayer _$ActivePlayerFromJson(Map<String, dynamic> json) => ActivePlayer(
+      json['points'] as String,
+      json['pos'] as String,
+      json['position_full'] as String,
+      json['player_code'] as String,
+      json['min'] as String,
+      json['fga'] as String,
+      json['fgm'] as String,
+      json['fgp'] as String,
+      json['fta'] as String,
+      json['ftm'] as String,
+      json['ftp'] as String,
+      json['offReb'] as String,
+      json['defReb'] as String,
+      json['totReb'] as String,
+      json['assists'] as String,
+      json['blocks'] as String,
+      json['isOnCourt'] as bool,
+      json['tpp'] as String,
+      json['tpa'] as String,
+      json['tpm'] as String,
+      json['turnovers'] as String,
+      json['teamId'] as String,
+      json['dnp'] as String,
+      json['firstName'] as String,
+      json['lastName'] as String,
+      json['jersey'] as String,
+      json['pFouls'] as String,
+      json['personId'] as String,
+      json['plusMinus'] as String,
+      PlayerSortKey.fromJson(json['sortKey'] as Map<String, dynamic>),
+      json['steals'] as String,
+    );
+
+Map<String, dynamic> _$ActivePlayerToJson(ActivePlayer instance) =>
+    <String, dynamic>{
+      'personId': instance.personId,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'jersey': instance.jersey,
+      'teamId': instance.teamId,
+      'isOnCourt': instance.isOnCourt,
+      'points': instance.points,
+      'pos': instance.pos,
+      'position_full': instance.position_full,
+      'player_code': instance.player_code,
+      'min': instance.min,
+      'fga': instance.fga,
+      'fgm': instance.fgm,
+      'fgp': instance.fgp,
+      'fta': instance.fta,
+      'ftm': instance.ftm,
+      'ftp': instance.ftp,
+      'tpa': instance.tpa,
+      'tpp': instance.tpp,
+      'tpm': instance.tpm,
+      'offReb': instance.offReb,
+      'defReb': instance.defReb,
+      'totReb': instance.totReb,
+      'assists': instance.assists,
+      'pFouls': instance.pFouls,
+      'steals': instance.steals,
+      'turnovers': instance.turnovers,
+      'blocks': instance.blocks,
+      'plusMinus': instance.plusMinus,
+      'dnp': instance.dnp,
+      'sortKey': instance.sortKey,
+    };
