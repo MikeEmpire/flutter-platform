@@ -72,11 +72,17 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                         NBAGameTeamInfo(
                                             teamData:
                                                 _gameSchedule[index].homeTeam,
+                                            teamLeader: _gameSchedule[index]
+                                                .gameLeaders
+                                                ?.homeLeaders,
                                             isAway: false),
                                         NBAGameStatus(
                                             gameStatus: status,
                                             gameData: _gameSchedule[index]),
                                         NBAGameTeamInfo(
+                                            teamLeader: _gameSchedule[index]
+                                                .gameLeaders
+                                                ?.awayLeaders,
                                             teamData:
                                                 _gameSchedule[index].awayTeam,
                                             isAway: true)
