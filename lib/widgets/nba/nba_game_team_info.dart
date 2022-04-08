@@ -28,39 +28,90 @@ class NBAGameTeamInfo extends StatelessWidget {
     String teamLeaderPoints = teamLeader?.points.toString() ?? "";
     String teamLeaderRebounds = teamLeader?.rebounds.toString() ?? "";
     String teamLeaderAssists = teamLeader?.assists.toString() ?? "";
+    String name = teamLeader?.name ?? "";
+    String position = teamLeader?.position ?? "";
+    String jerseyNum = teamLeader?.jerseyNum ?? "";
+    TextStyle jerseyStyle = const TextStyle(
+        fontSize: 10, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic);
+    TextStyle positionStyle =
+        const TextStyle(fontSize: 11, fontWeight: FontWeight.w400);
+    TextStyle playerNameStyle =
+        const TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
     Widget gameLeader() {
       Widget widget;
       switch (isAway) {
         case (true):
           widget = Row(
             children: [
-              Column(children: [
-                Text('Points: ' + teamLeaderPoints),
-                Text('Assists: ' + teamLeaderAssists),
-                Text('Rebounds: ' + teamLeaderRebounds)
-              ]),
-              Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                height: 40,
-                width: 40,
-              )
+              Padding(
+                padding: const EdgeInsets.only(
+                  right: 5,
+                ),
+                child: Column(children: [
+                  Text('Points: ' + teamLeaderPoints),
+                  Text(' Assists: ' + teamLeaderAssists),
+                  Text(' Rebs: ' + teamLeaderRebounds)
+                ]),
+              ),
+              Expanded(
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Column(children: [
+                        Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          height: 40,
+                          width: 40,
+                        ),
+                        Row(
+                          children: [
+                            Text(name, style: playerNameStyle),
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                                child: Text(
+                                  position,
+                                  style: positionStyle,
+                                )),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                              child: Text(jerseyNum, style: jerseyStyle),
+                            ),
+                          ],
+                        )
+                      ])))
             ],
           );
           break;
         default:
           widget = Row(
             children: [
-              Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                height: 40,
-                width: 40,
-              ),
+              Expanded(
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Column(children: [
+                        Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          height: 40,
+                          width: 40,
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                              child: Text(jerseyNum, style: jerseyStyle),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                                child: Text(position, style: positionStyle)),
+                            Text(name, style: playerNameStyle),
+                          ],
+                        )
+                      ]))),
               Column(children: [
                 Text('Points: ' + teamLeaderPoints),
-                Text('Assists: ' + teamLeaderAssists),
-                Text('Rebounds: ' + teamLeaderRebounds)
+                Text(' Assists: ' + teamLeaderAssists),
+                Text(' Rebounds: ' + teamLeaderRebounds)
               ])
             ],
           );
@@ -69,7 +120,7 @@ class NBAGameTeamInfo extends StatelessWidget {
     }
 
     return Expanded(
-        flex: 3,
+        flex: 4,
         child: Column(children: [
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
@@ -77,6 +128,9 @@ class NBAGameTeamInfo extends StatelessWidget {
                   fit: BoxFit.cover, height: 60, width: 60)),
           Text('$wins - ' + losses,
               style: Theme.of(context).textTheme.bodyText1),
+          Container(
+            height: 10,
+          ),
           gameLeader(),
         ]));
   }
