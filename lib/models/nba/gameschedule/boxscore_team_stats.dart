@@ -6,14 +6,14 @@ part 'boxscore_team_stats.g.dart';
 
 @JsonSerializable()
 class BoxscoreTeamStats {
-  String fastBreakPoints;
-  String pointsInPaint;
-  String longestRun;
-  String biggestLead;
-  String secondChancePoints;
-  String pointsOffTurnovers;
-  BoxscoreTeamTotals totals;
-  BoxscoreTeamLeaders leaders;
+  String? fastBreakPoints;
+  String? pointsInPaint;
+  String? longestRun;
+  dynamic biggestLead;
+  String? secondChancePoints;
+  String? pointsOffTurnovers;
+  BoxscoreTeamTotals? totals;
+  BoxscoreTeamLeaders? leaders;
 
   BoxscoreTeamStats(
       this.fastBreakPoints,

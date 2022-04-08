@@ -5,7 +5,7 @@ part 'boxscore_team_stats.g.dart';
 @JsonSerializable()
 class BoxscoreTeamStats {
   int assists;
-  int assistsTurnoverRatio;
+  double assistsTurnoverRatio;
   int benchPoints;
   int biggestLead;
   int biggestLeadScore;
@@ -15,11 +15,11 @@ class BoxscoreTeamStats {
   int blocksReceived;
   int fastBreakPointsAttempted;
   int fastBreakPointsMade;
-  int fastBreakPointsPercentage;
+  double fastBreakPointsPercentage;
   int fieldGoalsMade;
-  int fieldGoalsEffectiveAdjusted;
+  double fieldGoalsEffectiveAdjusted;
   int fieldGoalsAttempted;
-  int fieldGoalsPercentage;
+  double fieldGoalsPercentage;
   int foulsOffensive;
   int foulsPersonal;
   int foulsDrawn;
@@ -28,7 +28,7 @@ class BoxscoreTeamStats {
   int foulsTeamTechnical;
   int freeThrowsAttempted;
   int freeThrowsMade;
-  int freeThrowsPercentage;
+  double freeThrowsPercentage;
   int leadChanges;
   String minutes;
   String minutesCalculated;
@@ -39,7 +39,7 @@ class BoxscoreTeamStats {
   int pointsInThePaint;
   int pointsInThePaintMade;
   int pointsInThePaintAttempted;
-  int pointsInThePaintPercentage;
+  double pointsInThePaintPercentage;
   int pointsSecondChance;
   int reboundsDefensive;
   int reboundsPersonal;
@@ -50,21 +50,21 @@ class BoxscoreTeamStats {
   int reboundsTeamTotal;
   int secondChancePointsAttempted;
   int secondChancePointsMade;
-  int secondChancePointsPercentage;
+  double secondChancePointsPercentage;
   int steals;
   int threePointersMade;
-  int threePointersPercentage;
+  double threePointersPercentage;
   int threePointersAttempted;
   String timeLeading;
   int timesTied;
   int trueShootingAttempts;
-  int trueShootingPercentage;
+  double trueShootingPercentage;
   int turnovers;
   int turnoversTeam;
   int turnoversTotal;
   int twoPointersMade;
   int twoPointersAttempted;
-  int twoPointersPercentage;
+  double twoPointersPercentage;
 
   BoxscoreTeamStats(
       this.assists,

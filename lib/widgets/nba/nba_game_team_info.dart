@@ -108,11 +108,14 @@ class NBAGameTeamInfo extends StatelessWidget {
                           ],
                         )
                       ]))),
-              Column(children: [
-                Text('Points: ' + teamLeaderPoints),
-                Text(' Assists: ' + teamLeaderAssists),
-                Text(' Rebounds: ' + teamLeaderRebounds)
-              ])
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Column(children: [
+                  Text('Points: ' + teamLeaderPoints),
+                  Text(' Assists: ' + teamLeaderAssists),
+                  Text(' Rebs: ' + teamLeaderRebounds)
+                ]),
+              )
             ],
           );
       }

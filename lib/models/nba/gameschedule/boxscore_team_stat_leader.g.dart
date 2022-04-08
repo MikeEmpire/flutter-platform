@@ -9,9 +9,9 @@ part of 'boxscore_team_stat_leader.dart';
 BoxscoreTeamStatLeader _$BoxscoreTeamStatLeaderFromJson(
         Map<String, dynamic> json) =>
     BoxscoreTeamStatLeader(
-      json['value'] as String,
-      (json['players'] as List<dynamic>)
-          .map(
+      json['value'] as String?,
+      (json['players'] as List<dynamic>?)
+          ?.map(
               (e) => BoxscoreTeamStatLeader.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

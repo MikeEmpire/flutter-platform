@@ -5,19 +5,19 @@ part 'boxscore_player.g.dart';
 
 @JsonSerializable()
 class BoxscorePlayer {
-  int order;
-  String jerseyNum;
-  String status;
-  int personId;
-  String starter;
-  String position;
-  String oncourt;
-  String played;
-  String name;
-  String nameI;
-  String familyName;
-  String firstName;
-  BoxscorePlayerStats statistics;
+  int? order;
+  String? jerseyNum;
+  String? status;
+  int? personId;
+  String? starter;
+  String? position;
+  String? oncourt;
+  String? played;
+  String? name;
+  String? nameI;
+  String? familyName;
+  String? firstName;
+  BoxscorePlayerStats? statistics;
 
   BoxscorePlayer(
       this.order,

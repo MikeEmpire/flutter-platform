@@ -42,7 +42,7 @@ class GameService {
   }
 
   Future<GameBoxscoreRes> getBoxscore(String code, String date) async {
-    String _url = '$_baseUrl/stats?date=' + date + '&?code=$code';
+    String _url = '$_baseUrl/stats?date=' + date + '&code=$code';
     final res = await http.get(Uri.parse(_url));
     if (res.statusCode == 200) {
       dynamic rawData = jsonDecode(res.body);

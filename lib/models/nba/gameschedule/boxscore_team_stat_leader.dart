@@ -4,8 +4,8 @@ part 'boxscore_team_stat_leader.g.dart';
 
 @JsonSerializable()
 class BoxscoreTeamStatLeader {
-  String value;
-  List<BoxscoreTeamStatLeader> players;
+  String? value;
+  List<BoxscoreTeamStatLeader>? players;
 
   BoxscoreTeamStatLeader(this.value, this.players);
 

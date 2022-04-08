@@ -1,4 +1,5 @@
 import 'package:elite_mobile_app/models/nba/gameschedule/v2_game_schedule.dart';
+import 'package:elite_mobile_app/screens/nba_boxscore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -6,19 +7,19 @@ class NBAGameStatus extends StatelessWidget {
   const NBAGameStatus(
       {Key? key, required this.gameStatus, required this.gameData})
       : super(key: key);
-  final String? gameStatus;
-  final V2GameSchedule? gameData;
+  final String gameStatus;
+  final V2GameSchedule gameData;
 
   @override
   Widget build(BuildContext context) {
     Widget contentToShow() {
       Widget widget;
-      String seriesText = gameData?.seriesText as String;
-      DateTime val = DateTime.parse(gameData?.gameEt as String);
+      String seriesText = gameData.seriesText as String;
+      DateTime val = DateTime.parse(gameData.gameEt as String);
       String startTimeEastern = DateFormat("h:mma").format(val);
-      String hTeamScore = gameData?.homeTeam?.score.toString() as String;
-      String vTeamScore = gameData?.awayTeam?.score.toString() as String;
-      String currentPeriodStr = gameData?.period.toString() as String;
+      String hTeamScore = gameData.homeTeam?.score.toString() as String;
+      String vTeamScore = gameData.awayTeam?.score.toString() as String;
+      String currentPeriodStr = gameData.period.toString();
       switch (currentPeriodStr) {
         case ("1"):
           currentPeriodStr = currentPeriodStr + 'st';
@@ -32,7 +33,7 @@ class NBAGameStatus extends StatelessWidget {
         default:
           currentPeriodStr = currentPeriodStr + 'th';
       }
-      String gameStatusText = gameData?.gameStatusText as String;
+      String gameStatusText = gameData.gameStatusText as String;
       switch (gameStatus) {
         case ("inProgress"):
           widget = Column(children: [
@@ -70,6 +71,17 @@ class NBAGameStatus extends StatelessWidget {
       return widget;
     }
 
-    return Expanded(flex: 3, child: contentToShow());
+    return Expanded(
+        flex: 3,
+        child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NBABoxscorePage(
+                        gameData: gameData, gameStatus: gameStatus),
+                  ));
+            },
+            child: contentToShow()));
   }
 }
