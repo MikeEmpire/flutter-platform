@@ -50,8 +50,10 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                   int? gameStatus =
                                       _gameSchedule[index].gameStatus;
 
+                                  bool showLeaders = false;
                                   if (gameStatus == 1) {
                                     status = 'haventStarted';
+                                    showLeaders = true;
                                   }
                                   if (gameStatus == 2) {
                                     status = 'inProgress';
@@ -70,6 +72,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                                       .blueGrey.shade100))),
                                       child: Row(children: [
                                         NBAGameTeamInfo(
+                                            showLeaders: showLeaders,
                                             teamData:
                                                 _gameSchedule[index].homeTeam,
                                             teamLeader: _gameSchedule[index]
@@ -80,6 +83,7 @@ class _NBASchedulePageState extends State<NBASchedulePage> {
                                             gameStatus: status,
                                             gameData: _gameSchedule[index]),
                                         NBAGameTeamInfo(
+                                            showLeaders: showLeaders,
                                             teamLeader: _gameSchedule[index]
                                                 .gameLeaders
                                                 ?.awayLeaders,

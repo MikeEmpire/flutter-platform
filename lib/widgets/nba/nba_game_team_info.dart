@@ -7,9 +7,11 @@ class NBAGameTeamInfo extends StatelessWidget {
       {Key? key,
       required this.teamData,
       required this.teamLeader,
+      required this.showLeaders,
       required this.isAway})
       : super(key: key);
   final V2GameLeader? teamLeader;
+  final bool showLeaders;
   final V2GameTeam? teamData;
   final bool isAway;
   @override
@@ -39,6 +41,9 @@ class NBAGameTeamInfo extends StatelessWidget {
         const TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
     Widget gameLeader() {
       Widget widget;
+      if (showLeaders) {
+        return const SizedBox(height: 0);
+      }
       switch (isAway) {
         case (true):
           widget = Row(
@@ -57,15 +62,8 @@ class NBAGameTeamInfo extends StatelessWidget {
                   child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Column(children: [
-                        Image.network(
-                          imageUrl,
-                          fit: BoxFit.cover,
-                          height: 40,
-                          width: 40,
-                        ),
                         Row(
                           children: [
-                            Text(name, style: playerNameStyle),
                             Padding(
                                 padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                                 child: Text(
@@ -77,7 +75,14 @@ class NBAGameTeamInfo extends StatelessWidget {
                               child: Text(jerseyNum, style: jerseyStyle),
                             ),
                           ],
-                        )
+                        ),
+                        Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          height: 40,
+                          width: 40,
+                        ),
+                        Text(name, style: playerNameStyle),
                       ])))
             ],
           );
@@ -89,12 +94,6 @@ class NBAGameTeamInfo extends StatelessWidget {
                   child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Column(children: [
-                        Image.network(
-                          imageUrl,
-                          fit: BoxFit.cover,
-                          height: 40,
-                          width: 40,
-                        ),
                         Row(
                           children: [
                             Padding(
@@ -104,9 +103,15 @@ class NBAGameTeamInfo extends StatelessWidget {
                             Padding(
                                 padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
                                 child: Text(position, style: positionStyle)),
-                            Text(name, style: playerNameStyle),
                           ],
-                        )
+                        ),
+                        Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          height: 40,
+                          width: 40,
+                        ),
+                        Text(name, style: playerNameStyle),
                       ]))),
               Padding(
                 padding: const EdgeInsets.only(left: 5),

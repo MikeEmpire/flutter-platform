@@ -1,5 +1,5 @@
 import 'package:elite_mobile_app/models/nba/gameschedule/v2_game_schedule.dart';
-import 'package:elite_mobile_app/screens/nba_boxscore_page.dart';
+import 'package:elite_mobile_app/screens/nba_active_boxscore_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,6 +16,7 @@ class NBAGameStatus extends StatelessWidget {
       Widget widget;
       String seriesText = gameData.seriesText as String;
       DateTime val = DateTime.parse(gameData.gameEt as String);
+      String gameId = gameData.gameId as String;
       String startTimeEastern = DateFormat("h:mma").format(val);
       String hTeamScore = gameData.homeTeam?.score.toString() as String;
       String vTeamScore = gameData.awayTeam?.score.toString() as String;
@@ -53,8 +54,10 @@ class NBAGameStatus extends StatelessWidget {
             children: [
               Padding(
                   padding: const EdgeInsets.only(bottom: 5),
-                  child: Text('$hTeamScore-$vTeamScore',
-                      style: Theme.of(context).textTheme.headline5)),
+                  child: Hero(
+                      tag: 'gameScore' + gameId,
+                      child: Text('$hTeamScore-$vTeamScore',
+                          style: Theme.of(context).textTheme.headline5))),
               Padding(
                   padding: const EdgeInsets.only(bottom: 5),
                   child: Text("Final",
@@ -75,12 +78,14 @@ class NBAGameStatus extends StatelessWidget {
         flex: 3,
         child: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NBABoxscorePage(
-                        gameData: gameData, gameStatus: gameStatus),
-                  ));
+              if (gameStatus != 'haventStarted') {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NBAActiveBoxscorePage(
+                          gameData: gameData, gameStatus: gameStatus),
+                    ));
+              }
             },
             child: contentToShow()));
   }
