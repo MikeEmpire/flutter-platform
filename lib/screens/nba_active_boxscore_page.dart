@@ -88,20 +88,21 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                         Column(
                           children: [
                             NBATeamPeriodLine(
+                                score: gameInfo.homeTeam.score,
                                 periods: gameInfo.homeTeam.periods,
                                 image: homeTeamImage),
                             Row(children: [
                               Container(width: 60),
                               SizedBox(
                                   height: 10,
-                                  width: width,
+                                  width: width - 60,
                                   child: ListView.builder(
                                       itemCount: 4,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return SizedBox(
-                                            width: width / 4,
+                                            width: width / 5,
                                             child: Center(
                                                 child: Text(
                                               'Q${index + 1}',
@@ -115,6 +116,7 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                             ]),
                             NBATeamPeriodLine(
                                 periods: gameInfo.awayTeam.periods,
+                                score: gameInfo.awayTeam.score,
                                 image: awayTeamImage)
                           ],
                         )
