@@ -1,72 +1,72 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'boxscore_team_stats.g.dart';
+part 'boxscore_advanced_team_stats.g.dart';
 
 @JsonSerializable()
-class BoxscoreTeamStats {
-  int assists;
+class BoxscoreAdvancedTeamStats {
+  int? assists;
   double assistsTurnoverRatio;
-  int benchPoints;
-  int biggestLead;
-  int biggestLeadScore;
-  int biggestScoringRun;
-  int biggestScoringRunScore;
-  int blocks;
-  int blocksReceived;
-  int fastBreakPointsAttempted;
-  int fastBreakPointsMade;
+  int? benchPoints;
+  int? biggestLead;
+  String? biggestLeadScore;
+  int? biggestScoringRun;
+  String? biggestScoringRunScore;
+  int? blocks;
+  int? blocksReceived;
+  int? fastBreakPointsAttempted;
+  int? fastBreakPointsMade;
   double fastBreakPointsPercentage;
-  int fieldGoalsMade;
+  int? fieldGoalsMade;
   double fieldGoalsEffectiveAdjusted;
-  int fieldGoalsAttempted;
+  int? fieldGoalsAttempted;
   double fieldGoalsPercentage;
-  int foulsOffensive;
-  int foulsPersonal;
-  int foulsDrawn;
-  int foulsTeam;
-  int foulsTechnical;
-  int foulsTeamTechnical;
-  int freeThrowsAttempted;
-  int freeThrowsMade;
+  int? foulsOffensive;
+  int? foulsPersonal;
+  int? foulsDrawn;
+  int? foulsTeam;
+  int? foulsTechnical;
+  int? foulsTeamTechnical;
+  int? freeThrowsAttempted;
+  int? freeThrowsMade;
   double freeThrowsPercentage;
-  int leadChanges;
-  String minutes;
-  String minutesCalculated;
-  int points;
-  int pointsAgainst;
-  int pointsFastBreak;
-  int pointsFromTurnovers;
-  int pointsInThePaint;
-  int pointsInThePaintMade;
-  int pointsInThePaintAttempted;
+  int? leadChanges;
+  String? minutes;
+  String? minutesCalculated;
+  int? points;
+  int? pointsAgainst;
+  int? pointsFastBreak;
+  int? pointsFromTurnovers;
+  int? pointsInThePaint;
+  int? pointsInThePaintMade;
+  int? pointsInThePaintAttempted;
   double pointsInThePaintPercentage;
-  int pointsSecondChance;
-  int reboundsDefensive;
-  int reboundsPersonal;
-  int reboundsOffensive;
-  int reboundsTeam;
-  int reboundsTeamOffensive;
-  int reboundsTeamDefensive;
-  int reboundsTeamTotal;
-  int secondChancePointsAttempted;
-  int secondChancePointsMade;
+  int? pointsSecondChance;
+  int? reboundsDefensive;
+  int? reboundsPersonal;
+  int? reboundsOffensive;
+  int? reboundsTeam;
+  int? reboundsTeamOffensive;
+  int? reboundsTeamDefensive;
+  int? reboundsTeamTotal;
+  int? secondChancePointsAttempted;
+  int? secondChancePointsMade;
   double secondChancePointsPercentage;
-  int steals;
-  int threePointersMade;
+  int? steals;
+  int? threePointersMade;
   double threePointersPercentage;
-  int threePointersAttempted;
-  String timeLeading;
-  int timesTied;
-  int trueShootingAttempts;
+  int? threePointersAttempted;
+  String? timeLeading;
+  int? timesTied;
+  double? trueShootingAttempts;
   double trueShootingPercentage;
-  int turnovers;
-  int turnoversTeam;
-  int turnoversTotal;
-  int twoPointersMade;
-  int twoPointersAttempted;
+  int? turnovers;
+  int? turnoversTeam;
+  int? turnoversTotal;
+  int? twoPointersMade;
+  int? twoPointersAttempted;
   double twoPointersPercentage;
 
-  BoxscoreTeamStats(
+  BoxscoreAdvancedTeamStats(
       this.assists,
       this.assistsTurnoverRatio,
       this.benchPoints,
@@ -129,8 +129,8 @@ class BoxscoreTeamStats {
       this.twoPointersMade,
       this.twoPointersPercentage);
 
-  factory BoxscoreTeamStats.fromJson(Map<String, dynamic> data) =>
-      _$BoxscoreTeamStatsFromJson(data);
+  factory BoxscoreAdvancedTeamStats.fromJson(Map<String, dynamic> data) =>
+      _$BoxscoreAdvancedTeamStatsFromJson(data);
 
-  Map<String, dynamic> toJson() => _$BoxscoreTeamStatsToJson(this);
+  Map<String, dynamic> toJson() => _$BoxscoreAdvancedTeamStatsToJson(this);
 }

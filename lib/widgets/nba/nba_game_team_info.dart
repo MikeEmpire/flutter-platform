@@ -7,11 +7,11 @@ class NBAGameTeamInfo extends StatelessWidget {
       {Key? key,
       required this.teamData,
       required this.teamLeader,
-      required this.showLeaders,
+      required this.hideLeaders,
       required this.isAway})
       : super(key: key);
   final V2GameLeader? teamLeader;
-  final bool showLeaders;
+  final bool hideLeaders;
   final V2GameTeam? teamData;
   final bool isAway;
   @override
@@ -41,7 +41,7 @@ class NBAGameTeamInfo extends StatelessWidget {
         const TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
     Widget gameLeader() {
       Widget widget;
-      if (showLeaders) {
+      if (hideLeaders) {
         return const SizedBox(height: 0);
       }
       switch (isAway) {
@@ -139,7 +139,7 @@ class NBAGameTeamInfo extends StatelessWidget {
           Container(
             height: 10,
           ),
-          gameLeader(),
+          Center(child: gameLeader())
         ]));
   }
 }

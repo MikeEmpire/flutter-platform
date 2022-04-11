@@ -1,6 +1,6 @@
+import 'package:elite_mobile_app/models/nba/boxscore_advanced_team_stats.dart';
 import 'package:elite_mobile_app/models/nba/boxscore_period.dart';
 import 'package:elite_mobile_app/models/nba/boxscore_player.dart';
-import 'package:elite_mobile_app/models/nba/gameschedule/boxscore_team_stats.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'boxscore_team.g.dart';
@@ -16,7 +16,7 @@ class BoxscoreTeam {
   int timeoutsRemaining;
   List<BoxscorePeriod> periods;
   List<BoxscorePlayer> players;
-  BoxscoreTeamStats statistics;
+  BoxscoreAdvancedTeamStats statistics;
   BoxscoreTeam(
       this.teamCity,
       this.teamId,

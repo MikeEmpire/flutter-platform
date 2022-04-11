@@ -1,3 +1,4 @@
+import 'package:elite_mobile_app/models/nba/boxscore_advanced_team_stats.dart';
 import 'package:elite_mobile_app/models/nba/boxscore_info.dart';
 import 'package:elite_mobile_app/models/nba/game_boxscore_res.dart';
 import 'package:elite_mobile_app/models/nba/gameschedule/v2_game_schedule.dart';
@@ -27,13 +28,12 @@ class NBAActiveBoxscorePage extends StatelessWidget {
     String awayTeamImage = getTeamImage(awayTeamName);
     String gameDate = gameData.gameCode as String;
     String gameId = gameData.gameId as String;
-    bool showLeaders = false;
+    bool hideLeaders = false;
     String gameStatusText = gameData.gameStatusText.toString();
     String scoreDisplay = '${gameData.homeTeam?.score.toString()} -'
         ' ${gameData.awayTeam?.score.toString()}';
     gameDate = gameDate.split("/")[0];
     gameDate = gameDate.trim();
-    double width = MediaQuery.of(context).size.width - 60;
     final Future _gameBoxscoreFuture =
         gameService.getBoxscore(gameId, gameDate);
     return Scaffold(
@@ -47,7 +47,7 @@ class NBAActiveBoxscorePage extends StatelessWidget {
             child: Column(children: [
               Row(children: [
                 NBAGameTeamInfo(
-                    showLeaders: showLeaders,
+                    hideLeaders: hideLeaders,
                     teamData: gameData.homeTeam,
                     teamLeader: gameData.gameLeaders?.homeLeaders,
                     isAway: false),
@@ -56,7 +56,7 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                     child: Text(scoreDisplay,
                         style: Theme.of(context).textTheme.headline5)),
                 NBAGameTeamInfo(
-                    showLeaders: showLeaders,
+                    hideLeaders: hideLeaders,
                     teamLeader: gameData.gameLeaders?.awayLeaders,
                     teamData: gameData.awayTeam,
                     isAway: true)
@@ -75,6 +75,19 @@ class NBAActiveBoxscorePage extends StatelessWidget {
 
                     GameBoxscoreRes boxscore = snapshot.data as GameBoxscoreRes;
                     BoxscoreInfo gameInfo = boxscore.gameInfo;
+                    BoxscoreAdvancedTeamStats awayTeamStats =
+                        gameInfo.awayTeam.statistics;
+                    BoxscoreAdvancedTeamStats homeTeamStats =
+                        gameInfo.homeTeam.statistics;
+                    String awayFga =
+                        awayTeamStats.fieldGoalsAttempted.toString();
+
+                    String awayFgm = awayTeamStats.fieldGoalsMade.toString();
+                    String awayFg = '$awayFga / $awayFgm';
+                    String homeFga =
+                        homeTeamStats.fieldGoalsAttempted.toString();
+                    String homeFgm = homeTeamStats.fieldGoalsMade.toString();
+                    String homeFg = '$homeFga / $homeFgm';
                     return Column(
                       children: [
                         const Align(
@@ -119,7 +132,13 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                                 score: gameInfo.awayTeam.score,
                                 image: awayTeamImage)
                           ],
-                        )
+                        ),
+                        const Text("Match Details"),
+                        Row(children: [
+                          Text(homeFg),
+                          const Text("Field Goals"),
+                          Text(awayFg)
+                        ])
                       ],
                     );
                   })

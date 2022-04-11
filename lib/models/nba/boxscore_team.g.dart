@@ -18,7 +18,8 @@ BoxscoreTeam _$BoxscoreTeamFromJson(Map<String, dynamic> json) => BoxscoreTeam(
       (json['players'] as List<dynamic>)
           .map((e) => BoxscorePlayer.fromJson(e as Map<String, dynamic>))
           .toList(),
-      BoxscoreTeamStats.fromJson(json['statistics'] as Map<String, dynamic>),
+      BoxscoreAdvancedTeamStats.fromJson(
+          json['statistics'] as Map<String, dynamic>),
       json['teamTricode'] as String,
       json['timeoutsRemaining'] as int,
     );
