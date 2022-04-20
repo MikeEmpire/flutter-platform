@@ -83,11 +83,42 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                         awayTeamStats.fieldGoalsAttempted.toString();
 
                     String awayFgm = awayTeamStats.fieldGoalsMade.toString();
-                    String awayFg = '$awayFga / $awayFgm';
+                    String awayFg = '$awayFgm / $awayFga';
                     String homeFga =
                         homeTeamStats.fieldGoalsAttempted.toString();
                     String homeFgm = homeTeamStats.fieldGoalsMade.toString();
-                    String homeFg = '$homeFga / $homeFgm';
+                    String homeFg = '$homeFgm / $homeFga';
+                    double homeFgPct = homeTeamStats.fieldGoalsPercentage * 100;
+                    String homeFgPercentage = homeFgPct.toStringAsFixed(0);
+                    double awayFgPct = awayTeamStats.fieldGoalsPercentage * 100;
+                    String awayFgPercentage = awayFgPct.toStringAsFixed(0);
+                    String homeAssists = homeTeamStats.assists.toString();
+                    String awayAssists = awayTeamStats.assists.toString();
+                    String homeThreePointersMade =
+                        homeTeamStats.threePointersMade.toString();
+                    String awayThreePointersMade =
+                        awayTeamStats.threePointersMade.toString();
+                    String homeThreePointersTotal =
+                        homeTeamStats.threePointersAttempted.toString();
+                    String awayThreePointersTotal =
+                        awayTeamStats.threePointersAttempted.toString();
+
+                    String awayThreePointers =
+                        '$awayThreePointersMade / $awayThreePointersTotal';
+                    String homeThreePointers =
+                        '$homeThreePointersMade / $homeThreePointersTotal';
+                    double awayThreePct =
+                        awayTeamStats.threePointersPercentage * 100;
+                    String awayThreePercentage =
+                        awayThreePct.toStringAsFixed(0);
+                    double homeThreePct =
+                        homeTeamStats.threePointersPercentage * 100;
+                    String homeThreePercentage =
+                        homeThreePct.toStringAsFixed(0);
+                    String homeFT =
+                        '${homeTeamStats.freeThrowsMade} / ${homeTeamStats.freeThrowsAttempted}';
+                    String awayFT =
+                        '${awayTeamStats.freeThrowsMade} / ${awayTeamStats.freeThrowsAttempted}';
                     return Column(
                       children: [
                         const Align(
@@ -134,11 +165,58 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                           ],
                         ),
                         const Text("Match Details"),
-                        Row(children: [
-                          Text(homeFg),
-                          const Text("Field Goals"),
-                          Text(awayFg)
-                        ])
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(homeFg),
+                              const SizedBox(
+                                  width: 100,
+                                  child: Center(child: Text("Field Goals"))),
+                              Text(awayFg)
+                            ]),
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(homeFgPercentage + '%'),
+                              const SizedBox(
+                                width: 100,
+                                child: Center(child: Text("Field Goal Pct")),
+                              ),
+                              Text(awayFgPercentage + '%')
+                            ]),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(homeThreePointers),
+                            const SizedBox(
+                                width: 100,
+                                child: Center(child: Text("Three Pointers"))),
+                            Text(awayThreePointers)
+                          ],
+                        ),
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(homeThreePercentage + "%"),
+                              const SizedBox(
+                                  width: 100,
+                                  child: Center(child: Text("3P %"))),
+                              Text(awayThreePercentage + "%")
+                            ]),
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(homeFT),
+                              const SizedBox(
+                                  width: 100,
+                                  child: Center(child: Text("Free Throws"))),
+                              Text(awayFT)
+                            ])
                       ],
                     );
                   })
