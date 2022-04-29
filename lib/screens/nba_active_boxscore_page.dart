@@ -91,6 +91,9 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                             gameInfo.homeTeam.statistics;
                         return Column(
                           children: [
+                            NBAMatchStats(
+                                awayTeamStats: awayTeamStats,
+                                homeTeamStats: homeTeamStats),
                             const Align(
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
@@ -103,9 +106,6 @@ class NBAActiveBoxscorePage extends StatelessWidget {
                                 gameInfo: gameInfo,
                                 homeTeamImage: homeTeamImage,
                                 awayTeamImage: awayTeamImage),
-                            NBAMatchStats(
-                                awayTeamStats: awayTeamStats,
-                                homeTeamStats: homeTeamStats),
                             NBATeamBoxscore(players: homeTeamPlayers),
                             NBATeamBoxscore(players: awayTeamPlayers)
                           ],
